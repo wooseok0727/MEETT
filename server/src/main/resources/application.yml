@@ -11,11 +11,6 @@ spring:
     hibernate:
       ddl-auto: create
 
-      order_insert: true
-      order_update: true
-      jdbc:
-        batch_size: 100
-
     properties:
       hibernate:
         format_sql: true
