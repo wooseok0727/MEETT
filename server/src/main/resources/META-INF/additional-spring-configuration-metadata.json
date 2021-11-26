@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "spring.jpa.hibernate.jdbc.batch_size",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.hibernate.jdbc.batch_size."
+    },
+    {
+      "name": "spring.jpa.hibernate.order_insert",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.hibernate.order_insert."
+    },
+    {
+      "name": "spring.jpa.hibernate.order_update",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.hibernate.order_update."
+    }
+  ] }
