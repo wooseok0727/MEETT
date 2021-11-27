@@ -11,6 +11,10 @@ spring:
     hibernate:
       ddl-auto: create
 
+      jdbc.batch_size: 100
+      order_insert: true
+      order_update: true
+
     properties:
       hibernate:
         format_sql: true
@@ -19,7 +23,8 @@ spring:
     driver-class-name: "com.mysql.cj.jdbc.Driver"
     url: "jdbc:mysql://localhost:3306/MeettDB"
     username: "root"
-    password: "!Biz12341234"
+#    password: "!Biz12341234"
+    password: "liber_5425"
 
 logging:
   level:
