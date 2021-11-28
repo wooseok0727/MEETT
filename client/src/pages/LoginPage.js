@@ -1,11 +1,15 @@
 import React from "react";
+import AuthForm from "../components/auth/AuthForm";
+import AuthTemplate from "../components/auth/AuthTemplate";
 import HomeNavbar from "../components/HomeNavbar";
 
 const LoginPage = () => {
   return (
     <>
       <HomeNavbar />
-      <div>로그인</div>
+      <AuthTemplate>
+        <AuthForm />
+      </AuthTemplate>
     </>
   );
 };
