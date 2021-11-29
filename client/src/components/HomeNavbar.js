@@ -38,6 +38,7 @@ const Nav = styled.nav`
   }
   .nav-item {
     margin: 0 2.5rem;
+    visibility: ${(props) => (props.auth ? "hidden" : "visible")};
   }
   .nav-link {
     display: inline-block;
@@ -57,11 +58,11 @@ const Nav = styled.nav`
   }
 `;
 
-const HomeNavbar = () => {
+const HomeNavbar = ({ auth }) => {
   return (
     <Header>
       <Container>
-        <Nav className="nav">
+        <Nav className="nav" auth={auth}>
           <Link to="/" className="nav-logo">
             MEET<span>T</span>
           </Link>

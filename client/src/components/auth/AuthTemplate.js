@@ -46,7 +46,7 @@ const AuthTemplate = ({ children }) => {
   });
   return (
     <>
-      <HomeNavbar />
+      <HomeNavbar auth />
       <Transition timeline={auth} />
       <AuthSection>
         <ImgWrapper className="bottom" ref={bottom_img}>
