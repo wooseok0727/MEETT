@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import login from "../../assets/login.svg";
+import register from "../../assets/register.svg";
 import avatar from "../../assets/profile.svg";
 import styled from "styled-components";
 import PersonIcon from "@mui/icons-material/Person";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import HttpsIcon from "@mui/icons-material/Https";
+import EmailIcon from "@mui/icons-material/Email";
 import { Link } from "react-router-dom";
 
 const Content = styled.div`
@@ -56,7 +59,7 @@ const FormWrapper = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
-  .register {
+  .change {
     display: block;
     text-align: right;
     text-decoration: none;
@@ -145,7 +148,7 @@ const Input = styled.input`
   font-family: "Poppins", sans-serif;
 `;
 
-const AuthForm = ({ timeline }) => {
+const AuthForm = ({ timeline, type }) => {
   const login_img = useRef(null);
   const auth_form = useRef(null);
 
@@ -173,7 +176,11 @@ const AuthForm = ({ timeline }) => {
   return (
     <Content>
       <div className="image-wrapper" ref={login_img}>
-        <img src={login} alt="" />
+        {type === "REGISTER" ? (
+          <img src={register} alt="" />
+        ) : (
+          <img src={login} alt="" />
+        )}
       </div>
       <FormWrapper ref={auth_form}>
         <form>
@@ -197,10 +204,53 @@ const AuthForm = ({ timeline }) => {
               <Input type="password" />
             </div>
           </InputBox>
-          <button>LOGIN</button>
-          <Link to="/register" className="register">
-            Register
-          </Link>
+          {type === "REGISTER" && (
+            <>
+              <InputBox className="">
+                <div className="icon-wrapper">
+                  <HttpsIcon sx={{ fontSize: 28 }} />
+                </div>
+                <div>
+                  <h5>Password Confirm</h5>
+                  <Input type="password" />
+                </div>
+              </InputBox>
+              <InputBox className="">
+                <div className="icon-wrapper">
+                  <PersonOutlineIcon sx={{ fontSize: 28 }} />
+                </div>
+                <div>
+                  <h5>Nickname</h5>
+                  <Input type="text" />
+                </div>
+              </InputBox>
+              <InputBox className="">
+                <div className="icon-wrapper">
+                  <EmailIcon sx={{ fontSize: 28 }} />
+                </div>
+                <div>
+                  <h5>E-mail</h5>
+                  <Input type="email" />
+                </div>
+              </InputBox>
+            </>
+          )}
+
+          {type === "REGISTER" ? (
+            <>
+              <button>CREATE ACCOUNT</button>
+              <Link to="/login" className="change">
+                Login
+              </Link>
+            </>
+          ) : (
+            <>
+              <button>LOGIN</button>
+              <Link to="/register" className="change">
+                Register
+              </Link>
+            </>
+          )}
         </form>
       </FormWrapper>
     </Content>
