@@ -23,8 +23,7 @@ spring:
     driver-class-name: "com.mysql.cj.jdbc.Driver"
     url: "jdbc:mysql://localhost:3306/MeettDB"
     username: "root"
-#    password: "!Biz12341234"
-    password: "liber_5425"
+    password: "!Biz12341234"
 
 logging:
   level:
