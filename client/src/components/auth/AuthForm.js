@@ -2,11 +2,14 @@ import React, { useEffect, useRef } from "react";
 import login from "../../assets/login.svg";
 import register from "../../assets/register.svg";
 import avatar from "../../assets/profile.svg";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import HttpsIcon from "@mui/icons-material/Https";
 import EmailIcon from "@mui/icons-material/Email";
+import NaverIcon from "../../assets/Naver.png";
+import GoogleIcon from "../../assets/Google.png";
+import FaceBookIcon from "../../assets/Facebook-white.png";
 import { Link } from "react-router-dom";
 
 const Content = styled.div`
@@ -53,6 +56,55 @@ const Content = styled.div`
       background-position: right;
     }
   }
+`;
+
+const LineDivider = styled.div`
+  color: #9392b1;
+  font-size: 1.5rem;
+  position: relative;
+  margin: 1rem 0;
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    display: block;
+    content: " ";
+    width: calc(50% - 2.6rem);
+    height: 2px;
+    background: #d9d9d9;
+  }
+  &::after {
+    right: 0;
+  }
+`;
+
+const SnsLink = styled(Link)`
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 5rem;
+  color: ${(props) => props.color || "#fff"};
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 5.3rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0 0.5rem 0 1.5rem;
+  margin-bottom: 1rem;
+  background-color: ${(props) => props.background || "#fff"};
+  border-radius: 1.5rem;
+  ${(props) =>
+    props.border &&
+    css`
+      border: 1px solid #ccc;
+    `}
+`;
+
+const SnsImage = styled.img`
+  position: absolute;
+  top: 50%;
+  left: 1.8rem;
+  transform: translate(0, -50%);
 `;
 
 const FormWrapper = styled.div`
@@ -184,8 +236,14 @@ const AuthForm = ({ timeline, type }) => {
       </div>
       <FormWrapper ref={auth_form}>
         <form>
-          <img src={avatar} alt="" width="80" />
-          <h2>Welcome</h2>
+          {type === "REGISTER" ? (
+            <h2>REGISTER</h2>
+          ) : (
+            <>
+              <img src={avatar} alt="" width="80" />
+              <h2>Welcome</h2>
+            </>
+          )}
           <InputBox className="one">
             <div className="icon-wrapper">
               <PersonIcon sx={{ fontSize: 30 }} />
@@ -204,6 +262,13 @@ const AuthForm = ({ timeline, type }) => {
               <Input type="password" />
             </div>
           </InputBox>
+          {/* <TextField
+            label="Password"
+            variant="standard"
+            fullWidth
+            error={false}
+            helperText="ddd"
+          /> */}
           {type === "REGISTER" && (
             <>
               <InputBox className="">
@@ -246,6 +311,21 @@ const AuthForm = ({ timeline, type }) => {
           ) : (
             <>
               <button>LOGIN</button>
+              <LineDivider>
+                <span>OR</span>
+              </LineDivider>
+              <SnsLink to="#" background="#23c704">
+                <SnsImage src={NaverIcon} width="18" />
+                네이버 로그인
+              </SnsLink>
+              <SnsLink to="#" background="#1877f2">
+                <SnsImage src={FaceBookIcon} width="18" />
+                페이스북 로그인
+              </SnsLink>
+              <SnsLink to="#" color="#000" border="true">
+                <SnsImage src={GoogleIcon} width="18" />
+                구글 로그인
+              </SnsLink>
               <Link to="/register" className="change">
                 Register
               </Link>
