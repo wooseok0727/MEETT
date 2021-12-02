@@ -4,8 +4,10 @@ import com.team.meett.model.UserSchedule;
 import com.team.meett.service.UserScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,9 +22,14 @@ public class UserScheduleController {
     //    select findByUsername
     @GetMapping("/user/{username}")
     public ResponseEntity<?> selectUsername(@PathVariable String username) {
+
         List<UserSchedule> UsList = UsService.findByUsername(username);
         log.debug(UsList.toString());
-        return ResponseEntity.status(200).body(UsList);
+        if(UsList.isEmpty()){
+            return ResponseEntity.ok().body("데이터 없음");
+        }
+        return ResponseEntity.ok(UsList);
+
     }
 
 
@@ -39,18 +46,17 @@ public class UserScheduleController {
         return ResponseEntity.status(200).body(userSchedule);
     }
 
-//    update
-    @PatchMapping("/user/{seq}")
-    public ResponseEntity<?> update(@PathVariable Long seq){
+    //    update
+    @PutMapping("/user/{seq}")
+    public ResponseEntity<?> update(@PathVariable Long seq) {
         UserSchedule userSchedule = UsService.findById(seq);
-        // 업데이트 확인용 예시 데이터 userSchedule.setUsername("update");
         UsService.update(userSchedule);
         return ResponseEntity.status(200).body(UsService.selectAll());
     }
 
-//    delete
+    //    delete
     @DeleteMapping("/user/{seq}")
-    public ResponseEntity<?> delete(@PathVariable Long seq){
+    public ResponseEntity<?> delete(@PathVariable Long seq) {
         UsService.delete(seq);
         return ResponseEntity.status(200).body("삭제 완료");
     }
