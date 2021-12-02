@@ -68,7 +68,7 @@ const HomeNavbar = ({ auth }) => {
           </Link>
           <ul className="nav-list">
             <li className="nav-item">
-              <Link to="/register" className="nav-link">
+              <Link to="/login" className="nav-link">
                 JOIN NOW
               </Link>
             </li>

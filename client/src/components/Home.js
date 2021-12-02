@@ -166,7 +166,7 @@ const Home = () => {
                 Lorem Ipsum is simply dummy text of the printing Lorem <br />
                 Ipsum has been the industry's standard dummy
               </p>
-              <Link to="/login" className="cta">
+              <Link to="/register" className="cta">
                 Get Started
               </Link>
             </TextWrapper>
