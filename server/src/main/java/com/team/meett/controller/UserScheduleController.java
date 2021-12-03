@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
@@ -25,11 +26,10 @@ public class UserScheduleController {
 
         List<UserSchedule> UsList = UsService.findByUsername(username);
         log.debug(UsList.toString());
-        if(UsList.isEmpty()){
+        if (UsList.isEmpty()) {
             return ResponseEntity.ok().body("데이터 없음");
         }
         return ResponseEntity.ok(UsList);
-
     }
 
 

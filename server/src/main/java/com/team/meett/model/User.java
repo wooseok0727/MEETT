@@ -2,10 +2,9 @@ package com.team.meett.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +18,7 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    @Column(length = 20)
+    @Column(length = 20, name = "username")
     private String username;
 
     @Column(length = 20, nullable = false)
@@ -30,5 +29,8 @@ public class User {
 
     @Column(length = 30, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    List<UserSchedule> schedules = new ArrayList<>();
 
 }
