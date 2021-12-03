@@ -34,11 +34,12 @@ public class UserController {
         }
         httpSession.setAttribute("user", user);
 
-        return ResponseEntity.status(200).body("login 성공" + user);
+        return ResponseEntity.status(200).body(user);
    }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(User user){
+
 
         userRepository.save(user);
         return ResponseEntity.status(200).body(user);
