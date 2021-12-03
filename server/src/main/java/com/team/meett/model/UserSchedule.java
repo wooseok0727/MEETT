@@ -43,7 +43,7 @@ public class UserSchedule {
     private int role;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "username_id")
     private User user;
 
 }
