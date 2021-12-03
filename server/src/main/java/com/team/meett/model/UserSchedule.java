@@ -2,11 +2,9 @@ package com.team.meett.model;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -43,5 +41,9 @@ public class UserSchedule {
 
     @ColumnDefault("0")
     private int role;
+
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private User user;
 
 }
