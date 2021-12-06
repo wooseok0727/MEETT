@@ -1,6 +1,6 @@
 package com.team.meett.controller;
 
-import com.team.meett.model.User;
+import com.team.meett.model.Users;
 import com.team.meett.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(String username, String password, HttpSession httpSession){
 
-        User user = (User) userRepository.findByUsername(username);
+        Users user = (Users) userRepository.findByUsername(username);
         if(user == null){
             return ResponseEntity.status(400).body("아이디를 찾을 수 없습니다");
         }
@@ -38,7 +38,7 @@ public class UserController {
    }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(User user){
+    public ResponseEntity<?> register(Users user){
 
 
         userRepository.save(user);
