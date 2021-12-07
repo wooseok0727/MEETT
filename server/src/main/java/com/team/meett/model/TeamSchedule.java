@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "tbl_team_schedule")
 public class TeamSchedule {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ts_seq")
     private Long ts_seq;
 
