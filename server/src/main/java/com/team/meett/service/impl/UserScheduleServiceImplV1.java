@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserScheduleServiceImplV1 implements UserScheduleService {
 
-    @Autowired
+//    @Autowired
     private final UserScheduleRepository UsRepository;
 
     @Override
