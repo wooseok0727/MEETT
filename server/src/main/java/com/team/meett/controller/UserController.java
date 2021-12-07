@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,15 +20,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(String username, String password, HttpSession httpSession){
+    public ResponseEntity<?> login(@RequestBody Users userInfo, HttpSession httpSession){
 
-        Users user = (Users) userRepository.findByUsername(username);
+        Users user = (Users) userRepository.findByUsername(userInfo.getUsername());
         if(user == null){
             return ResponseEntity.status(400).body("아이디를 찾을 수 없습니다");
         }
 
-        if(!password.equals(user.getPassword())){
-            return ResponseEntity.status(400).body("비밀번호가 다릅니다" + password + "_" + user.getPassword());
+        if(!userInfo.getPassword().equals(user.getPassword())){
+            return ResponseEntity.status(400).body("비밀번호가 다릅니다" + userInfo.getPassword() + "_" + user.getPassword());
         }
         httpSession.setAttribute("user", user);
 
@@ -38,9 +36,9 @@ public class UserController {
    }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(Users user){
+    public ResponseEntity<?> register(@RequestBody Users user){
 
-
+        log.debug(user.toString());
         userRepository.save(user);
         return ResponseEntity.status(200).body(user);
     }

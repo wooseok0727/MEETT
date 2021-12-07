@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/schedule")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserScheduleController {
 
     protected final UserScheduleService UsService;
