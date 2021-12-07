@@ -1,33 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
 import bottom2 from "../../assets/bottom2.png";
 import HomeNavbar from "../HomeNavbar";
 import Transition from "../../lib/Transition";
 import gsap from "gsap";
-
-const AuthSection = styled.section`
-  width: 100%;
-  height: 100vh;
-  background-color: #fff;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-`;
-
-const ImgWrapper = styled.div`
-  position: absolute;
-  &.bottom {
-    bottom: 0rem;
-    left: -30rem;
-  }
-`;
-
-const Container = styled.div`
-  max-width: 140rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-`;
+import { Container, ImgWrapper, AuthSection } from "./AuthTemplate.style";
 
 const AuthTemplate = ({ children }) => {
   const auth = gsap.timeline();
