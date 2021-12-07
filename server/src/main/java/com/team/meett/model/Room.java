@@ -17,10 +17,10 @@ public class Room {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_username")
+    @JoinColumn(name = "username")
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "team_t_teamId")
+    @JoinColumn(name = "teamId")
     private Team team;
 }

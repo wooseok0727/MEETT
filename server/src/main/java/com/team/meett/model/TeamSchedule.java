@@ -16,26 +16,26 @@ import java.util.Date;
 public class TeamSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ts_seq")
-    private Long ts_seq;
+    @Column(name = "seq")
+    private Long seq;
 
-    private String ts_username;
-    private String ts_title;
-    private String ts_detail;
-
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
-    @Column(nullable = false)
-    private Date ts_start;
+    private String username;
+    private String title;
+    private String detail;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(nullable = false)
-    private Date ts_end;
+    private Date start;
+
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @Column(nullable = false)
+    private Date end;
 
     @ColumnDefault("0")
-    private int ts_role;
+    private int role;
 
     @ManyToOne
-    @JoinColumn(name = "t_teamId", insertable = false, updatable = false)
+    @JoinColumn(name = "teamId", insertable = false, updatable = false)
     private Team team;
 
 }
