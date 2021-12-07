@@ -16,12 +16,12 @@ public class Team {
 
     @Id
     @GeneratedValue
-    @Column(name = "t_teamId")
-    private String t_teamId;
+    @Column(name = "teamId")
+    private String teamId;
 
-    private String t_username;
-    private String t_title;
-    private String t_password;
+    private String username;
+    private String title;
+    private String password;
 
     @OneToMany(mappedBy = "team")
     private List<TeamSchedule> teamScheduleList = new ArrayList<>();
