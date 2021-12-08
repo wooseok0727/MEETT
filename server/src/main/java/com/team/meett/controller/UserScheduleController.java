@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/schedule")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class UserScheduleController {
 
     protected final UserScheduleService UsService;
@@ -42,7 +42,7 @@ public class UserScheduleController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> insert(UserSchedule userSchedule) {
+    public ResponseEntity<?> insert(@RequestBody UserSchedule userSchedule) {
         UsService.insert(userSchedule);
         return ResponseEntity.status(200).body(userSchedule);
     }
