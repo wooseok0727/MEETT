@@ -21,29 +21,29 @@ public class TeamServiceImplV1 implements TeamService {
     }
 
     @Override
-    public Optional<Team> findById(String t_tameId) {
-        // TODO: Optional UserScheduleServiceImplV1과 달리 설정해봄(수정필요)
-        return teamRepository.findById(t_tameId);
+    public Team findById(String teamId) {
+        Optional<Team> team = teamRepository.findById(teamId);
+        return team.orElse(null);
     }
 
     @Override
-    public List<Team> findByT_title(String t_title) {
-        return null;
+    public List<Team> findByTitle(String title) {
+        return teamRepository.findByTitle(title);
     }
 
 
     @Override
     public void insert(Team team) {
-
+        teamRepository.save(team);
     }
 
     @Override
     public void update(Team team) {
-
+        teamRepository.save(team);
     }
 
     @Override
-    public void delete(String t_teamId) {
-
+    public void delete(String teamId) {
+        teamRepository.deleteById(teamId);
     }
 }
