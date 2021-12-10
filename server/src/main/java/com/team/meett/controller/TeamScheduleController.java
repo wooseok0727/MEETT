@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping("/tschedule")
 @RequiredArgsConstructor
 public class TeamScheduleController {
+
+
+
+
 }
