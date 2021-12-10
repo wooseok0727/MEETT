@@ -8,10 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 
 @Entity
 @Table(name = "tbl_user", schema = "MeettDB")

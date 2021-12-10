@@ -8,10 +8,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestControllerAdvice
 @RequestMapping("/schedule")
 @RequiredArgsConstructor
 public class TeamController {
+
+//    @ExceptionHandler(Exception e)
+//    public String ExceptionHandler(Exception e){
+//        return null;
+//    }
+
 
     protected final TeamService teamService;
 
