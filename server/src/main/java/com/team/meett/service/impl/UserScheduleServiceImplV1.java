@@ -37,7 +37,7 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
 
     @Override
     public List<UserSchedule> findByTitle(String title) {
-        return null;
+        return UsRepository.findByTitle(title);
     }
 
     @Override
@@ -52,6 +52,8 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
 
     @Override
     public void delete(Long seq) {
-        UsRepository.deleteById(seq);
+
     }
+
+
 }
