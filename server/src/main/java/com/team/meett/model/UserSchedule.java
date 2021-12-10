@@ -9,10 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Builder
+
 
 @Entity
 @Table(name = "tbl_schedule", schema = "MeettDB")
