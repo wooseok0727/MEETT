@@ -38,9 +38,9 @@ public class TeamSchedule {
     private int role;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonManagedReference
-    @JoinColumn(name = "teamId", insertable = false, updatable = false)
+    @JoinColumn(name = "team_id", insertable = false, updatable = false)
     private Team team;
 
 }
