@@ -18,9 +18,8 @@ import java.util.List;
 public class Team {
 
     @Id
-    @GeneratedValue
-    @Column(name = "teamId")
-    private String teamId;
+    @Column(name = "team_id")
+    private String id;
 
     private String username;
     private String title;

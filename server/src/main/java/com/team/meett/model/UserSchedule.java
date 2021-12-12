@@ -1,5 +1,6 @@
 package com.team.meett.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,6 +39,7 @@ public class UserSchedule {
     private int role;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users users;
 
