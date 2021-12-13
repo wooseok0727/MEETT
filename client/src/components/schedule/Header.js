@@ -15,7 +15,7 @@ import { AvatarGroup, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../../actions/user";
 
-const Header = () => {
+const Header = ({ title }) => {
   const { theme } = useSelector((state) => state.theme);
   const iconFill = theme === "light" ? "#929292" : "#fff";
   const themeClass = theme === "light" ? "light" : "dark";
@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <Title className={themeClass}>MY SCHEDULE</Title>
+      <Title className={themeClass}>{title}</Title>
       <Content>
         <AvatarGroup max={4}>
           <CustomizedAvatar alt="" src={ProfileIMG} />
@@ -74,7 +74,9 @@ const Header = () => {
           </div>
         </div>
         <Profile>
-          <span className={`profile_name ${themeClass}`}>{user.nickname}</span>
+          <span className={`profile_name ${themeClass}`}>
+            {user.nickname || "KOREA"}
+          </span>
           <div className="profile_img" onClick={handleProfClick}>
             <CustomizedAvatar alt="" src={ProfileIMG} />
           </div>

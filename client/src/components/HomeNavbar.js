@@ -10,7 +10,7 @@ const HomeNavbar = ({ auth }) => {
   return (
     <HeaderWrapper>
       <ContainerWrapper>
-        <NavWrapper className="nav" auth={auth}>
+        <NavWrapper auth={auth}>
           <Link to="/" className="nav-logo">
             MEET<span>T</span>
           </Link>

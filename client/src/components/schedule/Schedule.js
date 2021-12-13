@@ -8,14 +8,14 @@ import {
   SchedulerWrapper,
 } from "./Schedule.style";
 
-const Schedule = () => {
+const Schedule = ({ title }) => {
   const { theme } = useSelector((state) => state.theme);
   const themeClass = theme === "light" ? "light" : "dark";
   return (
     <ScrollWrapper className={themeClass}>
       <ContainerWrapper className={themeClass}>
         <SchedulerWrapper>
-          <Header />
+          <Header title={title} />
           <div className="content">
             <Personal />
           </div>
