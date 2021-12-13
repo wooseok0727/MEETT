@@ -7,7 +7,7 @@ import Transition from "../lib/Transition";
 import HomeNavbar from "./HomeNavbar";
 import gsap from "gsap";
 import {
-  Container,
+  ContainerWrapper,
   HomeSection,
   Content,
   ImgWrapper,
@@ -72,7 +72,7 @@ const Home = () => {
         <ImgWrapper className="bottom" ref={bottom_img}>
           <img src={bottom} alt="" width="1547" height="1060" />
         </ImgWrapper>
-        <Container>
+        <ContainerWrapper>
           <Content>
             <TextWrapper ref={home_h1}>
               <h1>
@@ -91,7 +91,7 @@ const Home = () => {
               <img src={calendar} alt="" width="700" height="700" />
             </div>
           </Content>
-        </Container>
+        </ContainerWrapper>
       </HomeSection>
     </>
   );

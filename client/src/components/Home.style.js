@@ -28,7 +28,7 @@ const ImgWrapper = styled.div`
   }
 `;
 
-const Container = styled.div`
+const ContainerWrapper = styled.div`
   max-width: 140rem;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -89,4 +89,4 @@ const TextWrapper = styled.div`
   }
 `;
 
-export { HomeSection, ImgWrapper, Container, Content, TextWrapper };
+export { HomeSection, ImgWrapper, ContainerWrapper, Content, TextWrapper };

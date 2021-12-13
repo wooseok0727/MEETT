@@ -153,13 +153,6 @@ const AuthForm = ({ timeline, type }) => {
               />
             </div>
           </InputBox>
-          {/* <TextField
-            label="Password"
-            variant="standard"
-            fullWidth
-            error={false}
-            helperText="ddd"
-          /> */}
           {type === "REGISTER" && (
             <>
               <InputBox className={passwordCheck && "focus"}>

@@ -9,6 +9,10 @@
     "@mui/material": "^5.2.1",
     "@mui/styled-engine-sc": "^5.1.0",
     "@reduxjs/toolkit": "^1.6.2",
+    "@syncfusion/ej2": "^19.3.57",
+    "@syncfusion/ej2-base": "^19.3.57",
+    "@syncfusion/ej2-react-dropdowns": "^19.3.56",
+    "@syncfusion/ej2-react-schedule": "^19.3.55",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -24,6 +28,9 @@
     "redux-logger": "^3.0.6",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.0.1"
+  },
+  "alias": {
+    "@mui/styled-engine": "@mui/styled-engine-sc"
   },
   "scripts": {
     "start": "react-scripts start",
