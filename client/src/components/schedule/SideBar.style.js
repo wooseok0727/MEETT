@@ -4,7 +4,7 @@ const ContainerWrapper = styled.div`
   width: 22.225rem;
   height: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 980;
   &.light {
     border-right: 1px solid #dddfe5;
     background: #fff;

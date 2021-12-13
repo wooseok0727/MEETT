@@ -19,7 +19,7 @@ const Transition = ({ timeline }) => {
       x: 2500,
       ease: Power4.easeOut,
     });
-  });
+  }, []);
 
   return <TransitionWrapper ref={trans}></TransitionWrapper>;
 };
