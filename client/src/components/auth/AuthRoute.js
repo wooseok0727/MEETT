@@ -6,6 +6,7 @@ const AuthRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   console.log(user);
+  console.log(user.username);
 
   const authenticated = user.username == null;
 
