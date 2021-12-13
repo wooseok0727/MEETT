@@ -22,6 +22,8 @@ public class TeamSchedule {
     @Column(name = "seq")
     private Long seq;
 
+    private String team_id;
+
     private String username;
     private String title;
     private String detail;

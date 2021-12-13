@@ -33,20 +33,30 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
 
     }
 
+    @Override
+    public List<TeamSchedule> findByTeamId(String teamId) {
+        return teamScheduleRepository.findByTeam_id(teamId);
+    }
+
+    @Override
+    public TeamSchedule findBySeq(Long seq) {
+        return teamScheduleRepository.findBySeq(seq);
+    }
 
 
     @Override
     public void insert(TeamSchedule teamSchedule) {
+        teamScheduleRepository.save(teamSchedule);
 
     }
 
     @Override
     public void update(TeamSchedule teamSchedule) {
-
+        teamScheduleRepository.save(teamSchedule);
     }
 
     @Override
-    public void delete(TeamSchedule teamSchedule) {
-
+    public void delete(Long seq) {
+        teamScheduleRepository.deleteById(seq);
     }
 }
