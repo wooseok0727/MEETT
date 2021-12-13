@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Header = styled.header`
+const HeaderWrapper = styled.header`
   width: 100%;
   position: absolute;
   top: 0;
@@ -9,13 +9,13 @@ const Header = styled.header`
   z-index: 888;
 `;
 
-const Container = styled.div`
+const ContainerWrapper = styled.div`
   max-width: 140rem;
   margin: 0 auto;
   padding: 0 1.5rem;
 `;
 
-const Nav = styled.nav`
+const NavWrapper = styled.nav`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -56,4 +56,4 @@ const Nav = styled.nav`
   }
 `;
 
-export { Header, Container, Nav };
+export { HeaderWrapper, ContainerWrapper, NavWrapper };

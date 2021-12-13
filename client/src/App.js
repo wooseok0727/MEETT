@@ -10,8 +10,9 @@ const App = () => {
         <Route path="/mypage" element={<PAGE.MyPage />} />
         <Route path="/login" element={<PAGE.LoginPage />} />
         <Route path="/register" element={<PAGE.RegisterPage />} />
-        <Route path="/schedule" element={<PAGE.MySchedulePage />} />
+        <Route path="/schedule" element={<PAGE.SchedulePage />} />
         <Route path="/team" element={<PAGE.TeamSchedulePage />} />
+        <Route path="/my" element={<PAGE.MySchedulePage />} />
       </Routes>
     </>
   );

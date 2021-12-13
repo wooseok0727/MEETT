@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Header, Nav } from "./HomeNavbar.style";
+import {
+  ContainerWrapper,
+  HeaderWrapper,
+  NavWrapper,
+} from "./HomeNavbar.style";
 
 const HomeNavbar = ({ auth }) => {
   return (
-    <Header>
-      <Container>
-        <Nav className="nav" auth={auth}>
+    <HeaderWrapper>
+      <ContainerWrapper>
+        <NavWrapper className="nav" auth={auth}>
           <Link to="/" className="nav-logo">
             MEET<span>T</span>
           </Link>
@@ -17,9 +21,9 @@ const HomeNavbar = ({ auth }) => {
               </Link>
             </li>
           </ul>
-        </Nav>
-      </Container>
-    </Header>
+        </NavWrapper>
+      </ContainerWrapper>
+    </HeaderWrapper>
   );
 };
 
