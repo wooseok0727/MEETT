@@ -1,5 +1,6 @@
 package com.team.meett.controller;
 
+import com.team.meett.DTO.ErrorResponse;
 import com.team.meett.model.Team;
 import com.team.meett.service.TeamService;
 import lombok.Data;
@@ -74,16 +75,9 @@ public class TeamController {
 
 
     //전역 예외처리
-    @Data
-    public static class TeamErrorResponse {
-        private int statusCode;
-        private String message;
-        private String timestamp;
-    }
-
     @ExceptionHandler
-    public ResponseEntity<TeamErrorResponse> errorHandling(Exception e) {
-        TeamErrorResponse response = new TeamErrorResponse();
+    public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
+        ErrorResponse response = new ErrorResponse();
         SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
         String timestamp = timestamping.format(System.currentTimeMillis());
 
@@ -98,7 +92,7 @@ public class TeamController {
         } else if(e instanceof HttpMessageNotReadableException){
             //status 400
             response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-            response.setMessage("임시! insert하는 데이터 값이 존재하지 않을 시 발생됨::Required request body is missing");
+            response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
         }
         response.setTimestamp(timestamp);
 
