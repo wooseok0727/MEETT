@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-@Repository
 public interface UserScheduleRepository extends JpaRepository<UserSchedule, Long> {
 
     public List<UserSchedule> findByUsername(String username);

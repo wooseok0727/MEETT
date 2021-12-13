@@ -2,6 +2,7 @@ package com.team.meett.controller;
 
 import com.team.meett.model.Users;
 import com.team.meett.repository.UserRepository;
+import com.team.meett.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+    protected final UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Users userInfo, HttpSession httpSession){
 
-        Users user = (Users) userRepository.findByUsername(userInfo.getUsername());
+        Users user = userService.findByUsername(userInfo.getUsername());
+        log.debug(">>>>username" + user);
         if(user == null){
             return ResponseEntity.status(400).body("아이디를 찾을 수 없습니다");
         }
@@ -39,7 +40,7 @@ public class UserController {
     public ResponseEntity<?> register(@RequestBody Users user){
 
         log.debug(user.toString());
-        userRepository.save(user);
+        userService.insert(user);
         return ResponseEntity.status(200).body(user);
     }
 

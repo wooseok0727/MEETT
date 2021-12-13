@@ -39,7 +39,6 @@ public class UserSchedule {
     private int role;
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users users;
 
