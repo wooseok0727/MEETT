@@ -74,7 +74,10 @@ const userSlice = createSlice({
         console.log("로그아웃 성공");
         state.logoutLoading = false;
         state.logoutDone = true;
-        state.user = null;
+        state.user.username = null;
+        state.user.nickname = null;
+        state.user.email = null;
+        state.user.password = null;
       })
       .addCase(logOut.rejected, (state, action) => {
         console.log("로그아웃 실패");

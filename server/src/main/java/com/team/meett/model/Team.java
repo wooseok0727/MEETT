@@ -1,6 +1,7 @@
 package com.team.meett.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,6 @@ public class Team {
     private String password;
 
     @OneToMany(mappedBy = "team")
-    @JsonBackReference
+    @JsonManagedReference
     private List<TeamSchedule> teamScheduleList = new ArrayList<>();
 }
