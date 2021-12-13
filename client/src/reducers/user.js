@@ -54,6 +54,8 @@ const userSlice = createSlice({
         console.log("로그인 성공");
         state.loginLoading = false;
         state.user.username = action.payload.username;
+        state.user.nickname = action.payload.nickname;
+        state.user.email = action.payload.email;
         state.loginDone = true;
       })
       .addCase(logIn.rejected, (state, action) => {
