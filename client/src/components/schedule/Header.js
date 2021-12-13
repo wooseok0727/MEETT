@@ -22,6 +22,7 @@ const Header = ({ title }) => {
 
   const [anchorEle, setAnchorEle] = useState(null);
   const { logoutError, logoutDone, user } = useSelector((state) => state.user);
+  console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,13 +36,8 @@ const Header = ({ title }) => {
 
   const handleLogout = () => {
     dispatch(logOut());
+    navigate("/", { replace: true });
   };
-
-  useEffect(() => {
-    if (logoutDone) {
-      navigate("/", { replace: true });
-    }
-  }, [logoutDone, navigate]);
 
   return (
     <HeaderWrapper>
