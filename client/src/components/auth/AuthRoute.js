@@ -11,7 +11,7 @@ const AuthRoute = ({ children }) => {
   console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
-      navigate("/login", { replace: true });
+      navigate("/login");
     }
   }, [authenticated, navigate]);
 

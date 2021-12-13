@@ -22,7 +22,6 @@ const Header = ({ title }) => {
 
   const [anchorEle, setAnchorEle] = useState(null);
   const { logoutError, logoutDone, user } = useSelector((state) => state.user);
-  console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
