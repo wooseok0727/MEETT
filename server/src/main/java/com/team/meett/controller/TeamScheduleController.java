@@ -18,15 +18,39 @@ public class TeamScheduleController {
 
     protected final TeamScheduleService teamScheduleService;
 
-    @GetMapping("/team/{username}")
-    public ResponseEntity<?> selectUsername(@PathVariable String username){
-        List<TeamSchedule> tsList = teamScheduleService.findByUsername(username);
+    @GetMapping("/team/{teamId}")
+    public ResponseEntity<?> selectUsername(@PathVariable String teamId){
+        List<TeamSchedule> tsList = teamScheduleService.findByTeamId(teamId);
 
         if(tsList.isEmpty()){
-            return ResponseEntity.ok().body("teamschedule의 username 존재하지 않습니다");
+            return ResponseEntity.ok().body("teamschedule이 존재하지 않습니다");
         }
         return ResponseEntity.ok(tsList);
     }
+
+    // 팀방 스케줄 등록
+    @PostMapping("/team")
+    public ResponseEntity<?> insert(@RequestBody TeamSchedule teamSchedule){
+        teamScheduleService.insert(teamSchedule);
+        return ResponseEntity.status(200).body(teamSchedule);
+    }
+
+    // 팀방 스케줄 수정
+    @PutMapping("/team/id")
+    public ResponseEntity<?> update(@PathVariable Long seq){
+        TeamSchedule teamSchedule = teamScheduleService.findBySeq(seq);
+        teamScheduleService.update(teamSchedule);
+        return ResponseEntity.status(200).body(teamScheduleService.selectAll());
+    }
+
+    @DeleteMapping("/team/{seq}")
+    public ResponseEntity<?> delete(@PathVariable Long seq){
+        teamScheduleService.delete(seq);
+        return ResponseEntity.status(200).body("삭제완료");
+    }
+
+
+
 
 
 

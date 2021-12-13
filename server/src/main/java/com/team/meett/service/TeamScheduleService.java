@@ -9,9 +9,11 @@ public interface TeamScheduleService {
     public List<TeamSchedule> selectAll();
 
     public List<TeamSchedule> findByUsername(String username);
+    public List<TeamSchedule> findByTeamId(String teamId);
+    public TeamSchedule findBySeq(Long seq);
 
     public void insert(TeamSchedule teamSchedule);
     public void update(TeamSchedule teamSchedule);
-    public void delete(TeamSchedule teamSchedule);
+    public void delete(Long seq);
 
 }
