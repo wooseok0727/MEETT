@@ -5,14 +5,9 @@ import { useNavigate } from "react-router-dom";
 const AuthRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  console.log(user);
-  console.log(user.username);
 
   const authenticated = user.username == null;
 
-  console.log(authenticated);
-
-  console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
       navigate("/login");
