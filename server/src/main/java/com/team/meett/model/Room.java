@@ -1,5 +1,6 @@
 package com.team.meett.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,11 +17,14 @@ public class Room {
     @Column(name = "seq")
     private Long id;
 
+    private String username;
+    private String teamId;
+
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "teamId")
+    @JoinColumn(name = "teamId", insertable = false, updatable = false)
     private Team team;
 }
