@@ -10,6 +10,8 @@ const AuthRoute = ({ children }) => {
   const authenticated = user.username == null;
 
   console.log(authenticated);
+
+  console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
       navigate("/login");
