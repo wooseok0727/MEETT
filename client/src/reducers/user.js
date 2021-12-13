@@ -3,10 +3,10 @@ import { signup, logIn, logOut } from "../actions/user";
 
 const initialState = {
   user: {
-    username: "",
-    password: "",
-    nickname: "",
-    email: "",
+    username: null,
+    password: null,
+    nickname: null,
+    email: null,
   },
   loginLoading: false, // 로그인 시도중
   loginDone: false,
