@@ -1,5 +1,6 @@
 package com.team.meett.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -39,7 +40,7 @@ public class UserSchedule {
     private int role;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users users;
 

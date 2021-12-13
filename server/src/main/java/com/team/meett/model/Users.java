@@ -1,6 +1,7 @@
 package com.team.meett.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class Users {
     private String email;
 
     @OneToMany(mappedBy = "users")
-    @JsonBackReference
+    @JsonManagedReference
     private List<UserSchedule> userScheduleList = new ArrayList<>();
 
 }
