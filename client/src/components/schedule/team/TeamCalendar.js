@@ -13,7 +13,7 @@ import * as dataSource from "../../../lib/dataSource.json";
 import { applyCategoryColor } from "../Helper";
 enableRipple(true);
 
-const PersonalCalendar = () => {
+const TeamCalendar = () => {
   const data = extend([], dataSource.zooEventsData, null, true);
 
   const scheduleRef = useRef();
@@ -45,4 +45,4 @@ const PersonalCalendar = () => {
   );
 };
 
-export default PersonalCalendar;
+export default TeamCalendar;
