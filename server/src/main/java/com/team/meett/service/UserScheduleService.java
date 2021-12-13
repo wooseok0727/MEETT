@@ -13,5 +13,5 @@ public interface UserScheduleService {
 
     public void insert(UserSchedule userSchedule);
     public void update(UserSchedule userSchedule);
-    public void delete(Long seq);
+    public int delete(Long seq);
 }
