@@ -4,7 +4,8 @@ import Schedule from "../components/schedule/Schedule";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
-import { MyPage } from "./index";
+import Transition from "../lib/Transition";
+import gsap from "gsap";
 
 const Container = styled.div`
   &.light {
@@ -22,19 +23,27 @@ const Container = styled.div`
 const SchedulePage = () => {
   const { theme } = useSelector((state) => state.theme);
   const themeClass = theme === "light" ? "light" : "dark";
+  const schedule = gsap.timeline();
 
   return (
-    <Container className={themeClass}>
-      <div className="main">
-        <SideBar />
-        <Routes>
-          <Route path="/team" element={<Schedule title="TEAM SCHEDULE" />} />
-          <Route path="/my" element={<Schedule title="MY SCHEDULE" />} />
-          <Route path="/mypage" element={<Schedule title="MY SCHEDULE" />} />
-          <Route path="/settings" element={<Schedule title="MY SCHEDULE" />} />
-        </Routes>
-      </div>
-    </Container>
+    <>
+      <Transition timeline={schedule} />
+      <Container className={themeClass}>
+        <div className="main">
+          <SideBar />
+
+          <Routes>
+            <Route path="/team" element={<Schedule title="TEAM SCHEDULE" />} />
+            <Route path="/my" element={<Schedule title="MY SCHEDULE" />} />
+            <Route path="/mypage" element={<Schedule title="MY SCHEDULE" />} />
+            <Route
+              path="/settings"
+              element={<Schedule title="MY SCHEDULE" />}
+            />
+          </Routes>
+        </div>
+      </Container>
+    </>
   );
 };
 
