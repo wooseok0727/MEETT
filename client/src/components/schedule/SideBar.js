@@ -20,21 +20,21 @@ const initialNavList = [
   {
     id: 0,
     text: "TEAM SCHEDULE",
-    link: "/team",
+    link: "/schedule/team",
     isActive: true,
     icon: (color) => <EventNoteIcon sx={{ fontSize: 24, fill: `${color}` }} />,
   },
   {
     id: 1,
     text: "MY SCHEDULE",
-    link: "/my",
+    link: "/schedule/my",
     isActive: false,
     icon: (color) => <EventIcon sx={{ fontSize: 24, fill: `${color}` }} />,
   },
   {
     id: 2,
     text: "MY PAGE",
-    link: "/mypage",
+    link: "/schedule/mypage",
     isActive: false,
     icon: (color) => (
       <ManageAccountsIcon sx={{ fontSize: 24, fill: `${color}` }} />
@@ -43,7 +43,7 @@ const initialNavList = [
   {
     id: 3,
     text: "SETTINGS",
-    link: "/settings",
+    link: "/schedule/settings",
     isActive: false,
     icon: (color) => <SettingsIcon sx={{ fontSize: 24, fill: `${color}` }} />,
   },

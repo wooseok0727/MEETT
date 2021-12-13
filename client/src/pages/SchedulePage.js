@@ -3,6 +3,8 @@ import SideBar from "../components/schedule/SideBar";
 import Schedule from "../components/schedule/Schedule";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
+import { MyPage } from "./index";
 
 const Container = styled.div`
   &.light {
@@ -25,7 +27,12 @@ const SchedulePage = () => {
     <Container className={themeClass}>
       <div className="main">
         <SideBar />
-        <Schedule />
+        <Routes>
+          <Route path="/team" element={<Schedule title="TEAM SCHEDULE" />} />
+          <Route path="/my" element={<Schedule title="MY SCHEDULE" />} />
+          <Route path="/mypage" element={<Schedule title="MY SCHEDULE" />} />
+          <Route path="/settings" element={<Schedule title="MY SCHEDULE" />} />
+        </Routes>
       </div>
     </Container>
   );

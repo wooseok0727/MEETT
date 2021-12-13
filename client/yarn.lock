@@ -2027,7 +2027,7 @@
     "@syncfusion/ej2-base" "~19.3.53"
     "@syncfusion/ej2-data" "~19.3.53"
 
-"@syncfusion/ej2-dropdowns@19.3.56", "@syncfusion/ej2-dropdowns@~19.3.53", "@syncfusion/ej2-dropdowns@~19.3.55", "@syncfusion/ej2-dropdowns@~19.3.56":
+"@syncfusion/ej2-dropdowns@~19.3.53", "@syncfusion/ej2-dropdowns@~19.3.55", "@syncfusion/ej2-dropdowns@~19.3.56":
   version "19.3.56"
   resolved "https://registry.yarnpkg.com/@syncfusion/ej2-dropdowns/-/ej2-dropdowns-19.3.56.tgz#cdd98e00dc10b8aa38663e829790bf4341dcd2f5"
   integrity sha512-rAVTJY6lbM6a3O621jJV3P1zrTzO0vI0dr3hsrgvgnhEiRebqxootmbzCiogpOCU5VLMIHDrWXMspJUBrE7tlQ==
@@ -2323,15 +2323,6 @@
   integrity sha512-0QfJ4U7Ln477naASa4wPipfDZGcCdDoRyyIM7GUHRcljWmuJHd3Zbo4maWmOh8WH01d/lczW+EZVTtiDQTSv1g==
   dependencies:
     "@syncfusion/ej2-base" "~19.3.56"
-
-"@syncfusion/ej2-react-dropdowns@^19.3.56":
-  version "19.3.56"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-dropdowns/-/ej2-react-dropdowns-19.3.56.tgz#1c6d35b2cceb755b77c134184a387e04d3f6d935"
-  integrity sha512-43m2zXeARHTTGQUoVxza+L2HVefNrl2zR+OnsRY7N00pBwnMoZbYB3bgPzb9U2ar26VBZ/Essxx+X6A2RJ2kbA==
-  dependencies:
-    "@syncfusion/ej2-base" "~19.3.56"
-    "@syncfusion/ej2-dropdowns" "19.3.56"
-    "@syncfusion/ej2-react-base" "~19.3.53"
 
 "@syncfusion/ej2-react-schedule@^19.3.55":
   version "19.3.55"
