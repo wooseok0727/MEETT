@@ -74,12 +74,12 @@ public class TeamController {
     }
 
 
-    //전역 예외처리
+    //예외처리
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
         ErrorResponse response = new ErrorResponse();
-        SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-        String timestamp = timestamping.format(System.currentTimeMillis());
+//        SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+//        String timestamp = timestamping.format(System.currentTimeMillis());
 
         if (e instanceof InvalidDataAccessApiUsageException) {
             //status 500
@@ -94,7 +94,7 @@ public class TeamController {
             response.setStatusCode(HttpStatus.BAD_REQUEST.value());
             response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
         }
-        response.setTimestamp(timestamp);
+//        response.setTimestamp();
 
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
