@@ -44,6 +44,8 @@ public class TeamServiceImplV1 implements TeamService {
 
     @Override
     public void delete(String teamId) {
-        teamRepository.deleteById(teamId);
+//        if(teamRepository.existsById(teamId)){
+            teamRepository.deleteById(teamId);
+//        }
     }
 }
