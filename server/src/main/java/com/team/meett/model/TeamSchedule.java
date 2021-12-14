@@ -23,10 +23,14 @@ public class TeamSchedule {
     @Column(name = "seq")
     private Long seq;
 
+    @Column(length = 50)
     private String team_id;
 
+    @Column(length = 20)
     private String username;
+    @Column(length = 20)
     private String title;
+    @Column(length = 250)
     private String detail;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
@@ -41,7 +45,7 @@ public class TeamSchedule {
     private int role;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "team_id", insertable = false, updatable = false)
     private Team team;

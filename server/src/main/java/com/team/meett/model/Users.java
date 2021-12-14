@@ -29,7 +29,7 @@ public class Users {
     @Column(length = 30)
     private String email;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<UserSchedule> userScheduleList = new ArrayList<>();
 

@@ -19,14 +19,19 @@ import java.util.List;
 public class Team {
 
     @Id
-    @Column(name = "team_id")
+    @Column(name = "team_id", length = 50)
     private String id;
 
+    @Column(length = 20)
     private String username;
+
+    @Column(length = 20)
     private String title;
+
+    @Column(length = 20)
     private String password;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<TeamSchedule> teamScheduleList = new ArrayList<>();
 }
