@@ -46,7 +46,9 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
 
     @Override
     public void update(UserSchedule userSchedule) {
-        UsRepository.save(userSchedule);
+        if(UsRepository.existsById(userSchedule.getSeq())){
+            UsRepository.save(userSchedule);
+        }
     }
 
     @Override

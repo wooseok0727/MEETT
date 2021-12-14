@@ -36,11 +36,10 @@ public class TeamScheduleController {
     }
 
     // 팀방 스케줄 수정
-    @PutMapping("/team/id")
-    public ResponseEntity<?> update(@PathVariable Long seq){
-        TeamSchedule teamSchedule = teamScheduleService.findBySeq(seq);
-        teamScheduleService.update(teamSchedule);
-        return ResponseEntity.status(200).body(teamScheduleService.selectAll());
+    @PutMapping("/team")
+    public TeamSchedule update(@RequestBody TeamSchedule updateTeamSchedule){
+        teamScheduleService.update(updateTeamSchedule);
+        return updateTeamSchedule; //ResponseEntity.status(200).body(teamScheduleService.selectAll());
     }
 
     @DeleteMapping("/team/{seq}")

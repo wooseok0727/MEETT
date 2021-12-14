@@ -4,11 +4,13 @@ import com.team.meett.model.Team;
 import com.team.meett.repository.TeamRepository;
 import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service("TeamService")
 @RequiredArgsConstructor
 public class TeamServiceImplV1 implements TeamService {
@@ -23,6 +25,7 @@ public class TeamServiceImplV1 implements TeamService {
     @Override
     public Team findById(String teamId) {
         Optional<Team> team = teamRepository.findById(teamId);
+        log.debug(String.valueOf(team));
         return team.orElse(null);
     }
 
@@ -39,13 +42,19 @@ public class TeamServiceImplV1 implements TeamService {
 
     @Override
     public void update(Team team) {
-        teamRepository.save(team);
+        if(teamRepository.existsById(team.getId())){
+            teamRepository.save(team);
+            //서버에서 처리 했으나 혹시 프론트에서도 필요한 값인지
+        }
+
     }
 
     @Override
-    public void delete(String teamId) {
-//        if(teamRepository.existsById(teamId)){
+    public String delete(String teamId) {
+        if(teamRepository.existsById(teamId)){
             teamRepository.deleteById(teamId);
-//        }
+            return "succeed";
+        }
+        return "fail";
     }
 }
