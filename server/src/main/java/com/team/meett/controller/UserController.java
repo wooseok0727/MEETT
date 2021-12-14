@@ -48,6 +48,7 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession httpSession){
         httpSession.removeAttribute("user");
+        log.debug(">>>> 로그아웃 성공");
         return ResponseEntity.status(200).body("logout 성공");
     }
 

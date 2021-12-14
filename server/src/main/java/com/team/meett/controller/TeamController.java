@@ -49,6 +49,7 @@ public class TeamController {
 
     // get insert post insert
     @GetMapping("/team/create")
+
     public ResponseEntity<?> teamCreate() {
         return ResponseEntity.ok().build();
     }
@@ -84,33 +85,29 @@ public class TeamController {
     }
 
 
-    //예외처리
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
-        ErrorResponse response = new ErrorResponse();
-//        SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-//        String timestamp = timestamping.format(System.currentTimeMillis());
-
-        if (e instanceof InvalidDataAccessApiUsageException) {
-            //status 500
-            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.setMessage("수정되는 데이터 값이 반드시 필요합니다::Entity must not be null.");
-        } else if (e instanceof EmptyResultDataAccessException) {
-            //status 500
-            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.setMessage("삭제하고자 하는 Id가 존재하지 않습니다::No class entity with id exists!");
-        } else if(e instanceof HttpMessageNotReadableException){
-            //status 400
-            response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-            response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
-        } else if(e instanceof HttpMediaTypeNotSupportedException){
-            //status 415
-            response.setStatusCode(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value());
-            response.setMessage("Content type not supported");
-        }
-//        response.setTimestamp();
-
-        return ResponseEntity.status(response.getStatusCode()).body(response);
-    }
+//    //예외처리
+//    @ExceptionHandler
+//    public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
+//        ErrorResponse response = new ErrorResponse();
+////        SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+////        String timestamp = timestamping.format(System.currentTimeMillis());
+//
+//        if (e instanceof InvalidDataAccessApiUsageException) {
+//            //status 500
+//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//            response.setMessage("수정되는 데이터 값이 반드시 필요합니다::Entity must not be null.");
+//        } else if (e instanceof EmptyResultDataAccessException) {
+//            //status 500
+//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//            response.setMessage("삭제하고자 하는 TeamId가 존재하지 않습니다::No class entity with id exists!");
+//        } else if(e instanceof HttpMessageNotReadableException){
+//            //status 400
+//            response.setStatusCode(HttpStatus.BAD_REQUEST.value());
+//            response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
+//        }
+////        response.setTimestamp();
+//
+//        return ResponseEntity.status(response.getStatusCode()).body(response);
+//    }
 
 }

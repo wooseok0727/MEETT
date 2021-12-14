@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TableWrapper } from "./PersonalList.style";
+import { TableWrapper } from "./TeamList.style";
 
 const scheduleData = [
   {
@@ -69,7 +69,7 @@ const scheduleData = [
   },
 ];
 
-const PersonalList = () => {
+const TeamList = () => {
   const { theme } = useSelector((state) => state.theme);
   const themeClass = theme === "light" ? "light" : "dark";
   return (
@@ -100,4 +100,4 @@ const PersonalList = () => {
   );
 };
 
-export default PersonalList;
+export default TeamList;
