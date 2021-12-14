@@ -1,5 +1,6 @@
 package com.team.meett.controller;
 
+import com.team.meett.DTO.ErrorResponse;
 import com.team.meett.model.Users;
 import com.team.meett.repository.UserRepository;
 import com.team.meett.service.UserService;
@@ -50,5 +51,6 @@ public class UserController {
         log.debug(">>>> 로그아웃 성공");
         return ResponseEntity.status(200).body("logout 성공");
     }
+
 
 }

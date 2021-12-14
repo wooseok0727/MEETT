@@ -52,11 +52,10 @@ public class UserScheduleController {
     }
 
     //    update
-    @PutMapping("/user/{seq}")
-    public ResponseEntity<?> update(@PathVariable Long seq) {
-        UserSchedule userSchedule = UsService.findById(seq);
-        UsService.update(userSchedule);
-        return ResponseEntity.status(200).body(userSchedule);
+    @PutMapping("/user")
+    public UserSchedule update(@RequestBody UserSchedule updateUserSchedule) {
+        UsService.update(updateUserSchedule);
+        return updateUserSchedule;//ResponseEntity.status(200).body(userSchedule);
     }
 
     //    delete
