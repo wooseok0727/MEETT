@@ -17,14 +17,17 @@ public class Room {
     @Column(name = "seq")
     private Long id;
 
+    @Column(length = 20)
     private String username;
-    private String teamId;
 
-    @ManyToOne
+    @Column(length = 50)
+    private String team_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users user;
 
-    @ManyToOne
-    @JoinColumn(name = "teamId", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id", insertable = false, updatable = false)
     private Team team;
 }

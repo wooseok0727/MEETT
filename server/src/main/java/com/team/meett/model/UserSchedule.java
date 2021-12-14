@@ -27,7 +27,7 @@ public class UserSchedule {
     @Column(length = 20)
     private String title;
 
-    @Column(length = 255)
+    @Column(length = 250)
     private String detail;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
@@ -39,7 +39,7 @@ public class UserSchedule {
     @ColumnDefault("0")
     private int role;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users users;

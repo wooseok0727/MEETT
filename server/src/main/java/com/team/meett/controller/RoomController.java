@@ -27,7 +27,7 @@ public class RoomController {
         return  ResponseEntity.ok(roomList);
     }
 
-    @GetMapping("/{teamId}")
+    @GetMapping("/teamId/{teamId}")
     public ResponseEntity selectUser(@PathVariable String teamId){
         List<Room> roomList = roomService.findByTeamId(teamId);
         if(roomList.isEmpty()){
