@@ -1,12 +1,9 @@
 package com.team.meett.controller;
 
-import com.team.meett.DTO.ErrorResponse;
 import com.team.meett.model.Users;
-import com.team.meett.repository.UserRepository;
 import com.team.meett.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

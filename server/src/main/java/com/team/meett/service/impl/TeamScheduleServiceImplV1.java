@@ -52,7 +52,7 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
 
     @Override
     public void update(TeamSchedule teamSchedule) {
-        if(teamScheduleRepository.existsById(teamSchedule.getSeq())){
+        if (teamScheduleRepository.existsById(teamSchedule.getSeq())) {
             teamScheduleRepository.save(teamSchedule);
         }
     }

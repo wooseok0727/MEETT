@@ -1,22 +1,12 @@
 package com.team.meett.controller;
 
-import com.team.meett.DTO.ErrorResponse;
 import com.team.meett.model.Team;
 import com.team.meett.service.TeamService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -63,7 +53,7 @@ public class TeamController {
     }
 
     //update
-    @PutMapping(value = "/team")
+    @PutMapping(value = "/team/{id}")
     public Team update(@RequestBody Team updateTeam) {
 
 //        Team team = teamService.findById(teamId);
@@ -85,7 +75,7 @@ public class TeamController {
     }
 
 
-//    //예외처리
+    //예외처리
 //    @ExceptionHandler
 //    public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
 //        ErrorResponse response = new ErrorResponse();
@@ -99,11 +89,15 @@ public class TeamController {
 //        } else if (e instanceof EmptyResultDataAccessException) {
 //            //status 500
 //            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-//            response.setMessage("삭제하고자 하는 TeamId가 존재하지 않습니다::No class entity with id exists!");
-//        } else if(e instanceof HttpMessageNotReadableException){
+//            response.setMessage("삭제하고자 하는 Id가 존재하지 않습니다::No class entity with id exists!");
+//        } else if (e instanceof HttpMessageNotReadableException) {
 //            //status 400
 //            response.setStatusCode(HttpStatus.BAD_REQUEST.value());
 //            response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
+//        } else if (e instanceof HttpMediaTypeNotSupportedException) {
+//            //status 415
+//            response.setStatusCode(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value());
+//            response.setMessage("Content type not supported::");
 //        }
 ////        response.setTimestamp();
 //

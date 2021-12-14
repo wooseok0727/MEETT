@@ -4,7 +4,6 @@ import com.team.meett.model.TeamSchedule;
 import com.team.meett.service.TeamScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,11 +47,7 @@ public class TeamScheduleController {
         return ResponseEntity.status(200).body("삭제완료");
     }
 
-
-
-
-
-
+    //예외처리
 
 
 }
