@@ -4,7 +4,6 @@ import com.team.meett.model.TeamSchedule;
 import com.team.meett.service.TeamScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,11 +35,10 @@ public class TeamScheduleController {
     }
 
     // 팀방 스케줄 수정
-    @PutMapping("/team/id")
-    public ResponseEntity<?> update(@PathVariable Long seq){
-        TeamSchedule teamSchedule = teamScheduleService.findBySeq(seq);
-        teamScheduleService.update(teamSchedule);
-        return ResponseEntity.status(200).body(teamScheduleService.selectAll());
+    @PutMapping("/team")
+    public TeamSchedule update(@RequestBody TeamSchedule updateTeamSchedule){
+        teamScheduleService.update(updateTeamSchedule);
+        return updateTeamSchedule; //ResponseEntity.status(200).body(teamScheduleService.selectAll());
     }
 
     @DeleteMapping("/team/{seq}")
@@ -49,11 +47,7 @@ public class TeamScheduleController {
         return ResponseEntity.status(200).body("삭제완료");
     }
 
-
-
-
-
-
+    //예외처리
 
 
 }

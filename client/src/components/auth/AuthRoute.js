@@ -8,10 +8,9 @@ const AuthRoute = ({ children }) => {
 
   const authenticated = user.username == null;
 
-  console.log(authenticated);
   useEffect(() => {
     if (authenticated) {
-      navigate("/login", { replace: true });
+      navigate("/login");
     }
   }, [authenticated, navigate]);
 
