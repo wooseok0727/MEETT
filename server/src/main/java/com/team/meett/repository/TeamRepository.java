@@ -9,3 +9,4 @@ public interface TeamRepository extends JpaRepository<Team, String> {
 
     public List<Team> findByTitle(String title);
 }
+
