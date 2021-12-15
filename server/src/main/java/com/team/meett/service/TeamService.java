@@ -1,16 +1,19 @@
 package com.team.meett.service;
 
+import com.team.meett.dto.TeamRequestDto;
+import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Team;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TeamService {
-    public List<Team> selectAll();
+    public List<TeamResponseDto> selectAll();
 
-    public Team findById(String teamId);
-    public List<Team> findByTitle(String title);
+    public Optional<TeamResponseDto> findById(String teamId);
+    public List<TeamResponseDto> findByTitle(String title);
 
-    public void insert(Team team);
-    public void update(Team team);
+    public void insert(TeamRequestDto team);
+    public void update(TeamRequestDto team);
     public String delete(String teamId);
 }
