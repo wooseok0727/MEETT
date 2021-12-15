@@ -7,7 +7,6 @@ const useInput = (initialForm) => {
     setForm((form) => ({ ...form, [name]: value }));
   }, []);
 
-  console.log(form);
   const reset = useCallback(() => setForm(initialForm), [initialForm]);
   return [form, onChange, reset];
 };
