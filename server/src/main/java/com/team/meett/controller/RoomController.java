@@ -1,7 +1,9 @@
 package com.team.meett.controller;
 
 import com.team.meett.model.Room;
+import com.team.meett.model.Team;
 import com.team.meett.service.RoomService;
+import com.team.meett.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +14,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/group")
-
-
 @RequiredArgsConstructor
 public class RoomController {
 
     protected final RoomService roomService;
+    protected final SearchService searchService;
 
     @GetMapping("/{username}")
     public ResponseEntity selectTeam(@PathVariable String username){
@@ -55,7 +56,19 @@ public class RoomController {
         return ResponseEntity.status(200).body(room);
     }
 
-    //@DeleteMapping
-
+//    @GetMapping("/test")
+//    public ResponseEntity searchTeam(@RequestParam(value = "title", required = false)String title){
+//
+//        List<Team> teamList;
+//        if(title != null){
+//            teamList = searchService.searchByTitle(title);
+//            if(teamList.isEmpty()){
+//                return ResponseEntity.ok().body(title + "은 존재하지 않는 모임");
+//            }
+//        } else {
+//            return ResponseEntity.ok().body("검색어를 입력해주세요");
+//        }
+//        return ResponseEntity.ok(teamList);
+//    }
 
 }

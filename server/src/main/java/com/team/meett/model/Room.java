@@ -23,11 +23,11 @@ public class Room {
     @Column(length = 50)
     private String team_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "username", insertable = false, updatable = false)
     private Users user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team_id", insertable = false, updatable = false)
     private Team team;
 }
