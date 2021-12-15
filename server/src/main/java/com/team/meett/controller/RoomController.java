@@ -12,6 +12,8 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/group")
+
+
 @RequiredArgsConstructor
 public class RoomController {
 
