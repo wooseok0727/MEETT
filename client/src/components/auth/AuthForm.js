@@ -38,6 +38,8 @@ const AuthForm = ({ timeline, type }) => {
     (state) => state.user
   );
 
+  console.log(passwordError, signupError, loginError, reset);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

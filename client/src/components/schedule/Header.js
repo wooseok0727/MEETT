@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   HeaderWrapper,
@@ -21,7 +21,7 @@ const Header = ({ title }) => {
   const themeClass = theme === "light" ? "light" : "dark";
 
   const [anchorEle, setAnchorEle] = useState(null);
-  const { logoutError, logoutDone, user } = useSelector((state) => state.user);
+  const { nickname } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ const Header = ({ title }) => {
         </div>
         <Profile>
           <span className={`profile_name ${themeClass}`}>
-            {user.nickname || "KOREA"}
+            {nickname || "KOREA"}
           </span>
           <div className="profile_img" onClick={handleProfClick}>
             <CustomizedAvatar alt="" src={ProfileIMG} />

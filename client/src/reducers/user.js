@@ -74,6 +74,8 @@ const userSlice = createSlice({
         console.log("로그아웃 성공");
         state.logoutLoading = false;
         state.logoutDone = true;
+        state.loginDone = false;
+        state.signupDone = false;
         state.user.username = null;
         state.user.nickname = null;
         state.user.email = null;
