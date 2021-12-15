@@ -1,14 +1,14 @@
 package com.team.meett.advice;
 
-import com.team.meett.DTO.ErrorResponse;
+import com.team.meett.dto.ErrorResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -43,6 +43,10 @@ public class ExceptionAdvice {
             //status 400
             response.setStatusCode(HttpStatus.BAD_REQUEST.value());
             response.setMessage("Request한 칼럼 타입을 확인해주세요. 설정과 다른 타입이 들어감::Failed to convert value of type to required type");
+        } else if(e instanceof HttpMessageConversionException){
+            //status 500
+            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setMessage("Type definition error");
         }
 
         return ResponseEntity.status(response.getStatusCode()).body(response);
