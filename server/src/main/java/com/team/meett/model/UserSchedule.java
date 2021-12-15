@@ -16,6 +16,7 @@ import java.util.Date;
 @Entity
 @Table(name = "tbl_schedule", schema = "MeettDB")
 public class UserSchedule {
+
     @Id
     @Column(name = "seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
