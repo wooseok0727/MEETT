@@ -1,5 +1,7 @@
 package com.team.meett.controller;
 
+import com.team.meett.dto.TeamRequestDto;
+import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Team;
 import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,7 @@ public class TeamController {
     //    find by title :: 팀명으로 조회했을 경우
     @GetMapping("/team")
     public ResponseEntity<?> selectTitle(@RequestParam(value = "title", required = false) String title) {
-        List<Team> teamList;
+        List<TeamResponseDto> teamList;
         if (title != null) {
             teamList = teamService.findByTitle(title);
             if (teamList.isEmpty()) {
@@ -45,7 +47,7 @@ public class TeamController {
     }
 
     @PostMapping("/team/create")
-    public Team teamCreate(@RequestBody Team team) {
+    public TeamRequestDto teamCreate(@RequestBody TeamRequestDto team) {
         //DefaultHandlerExceptionResolver
 
         teamService.insert(team);
@@ -54,7 +56,7 @@ public class TeamController {
 
     //update
     @PutMapping(value = "/team/{id}")
-    public Team update(@RequestBody Team updateTeam) {
+    public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam) {
 
 //        Team team = teamService.findById(teamId);
 //        if(team == null){
