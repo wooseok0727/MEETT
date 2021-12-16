@@ -52,8 +52,11 @@ const AuthForm = ({ timeline, type }) => {
   );
 
   useEffect(() => {
-    if (signupDone || loginDone) {
-      navigate("/schedule/my", { replace: true });
+    if (loginDone) {
+      navigate("/schedule/team", { replace: true });
+    }
+    if (signupDone) {
+      navigate("/", { replace: true });
     }
   }, [signupDone, loginDone, navigate]);
 

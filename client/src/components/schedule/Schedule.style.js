@@ -7,6 +7,13 @@ const ScrollWrapper = styled.div`
   z-index: 0;
   overflow-x: hidden;
   width: 100%;
+  &.light {
+    background: #fafafa;
+  }
+
+  &.dark {
+    background: #161c24;
+  }
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -55,7 +62,7 @@ const ScrollWrapper = styled.div`
 const ContainerWrapper = styled.div`
   margin-left: 22.225rem;
   width: calc(100% - 22.225rem);
-  height: 150%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -81,7 +88,6 @@ const SchedulerWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
-    height: 450px;
   }
 `;
 

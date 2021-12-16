@@ -1,7 +1,7 @@
 package com.team.meett.service;
 
 import com.team.meett.model.Users;
-import com.team.meett.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,18 +10,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Slf4j
 @Service
 public class JwtUserDetailService implements UserDetailsService {
 
-    private final UserRepository repository;
+    private final UserService userService;
 
-    public JwtUserDetailService(UserRepository repository) {
-        this.repository = repository;
+    public JwtUserDetailService(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = repository.findByUsername(username);
+        Users user = userService.findById(username);
         if(user.getUsername().equals(username)) {
             return new User(user.getUsername(),"{noop}" + user.getPassword(),new ArrayList<>());
         } else {

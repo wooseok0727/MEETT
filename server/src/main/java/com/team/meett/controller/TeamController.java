@@ -24,19 +24,20 @@ public class TeamController {
     //    find by title :: 팀명으로 조회했을 경우
     @GetMapping("/team")
     public ResponseEntity<?> selectTitle(@RequestParam(value = "title", required = false) String title) {
+        log.debug("실행");
         List<TeamResponseDto> teamList;
         if (title != null) {
             teamList = teamService.findByTitle(title);
             if (teamList.isEmpty()) {
-                return ResponseEntity.ok().body(title + "은 존재하지 않는 모임입니다");
+                return ResponseEntity.badRequest().body(title + "은 존재하지 않는 모임입니다");
             }
         } else {
             teamList = teamService.selectAll();
             if (teamList.isEmpty()) {
-                return ResponseEntity.ok().body("Team이 존재하지 않습니다");
+                return ResponseEntity.badRequest().body("Team이 존재하지 않습니다");
             }
         }
-        return ResponseEntity.ok(teamList);
+        return ResponseEntity.ok().body(teamList);
     }
 
     // get insert post insert

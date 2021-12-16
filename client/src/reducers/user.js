@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signup, logIn, logOut } from "../actions/user";
+import { signup, logIn } from "../actions/user";
 
 const initialState = {
   user: {
@@ -11,9 +11,6 @@ const initialState = {
   loginLoading: false, // 로그인 시도중
   loginDone: false,
   loginError: null,
-  logoutLoading: false, // 로그아웃 시도중
-  logoutDone: false,
-  logoutError: null,
   signupLoading: false, // 회원가입 시도중
   signupDone: false,
   signupError: null,
@@ -22,7 +19,16 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      state.user.username = null;
+      state.user.nickname = null;
+      state.user.email = null;
+      state.user.password = null;
+      state.loginDone = false;
+      state.signupDone = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // 회원가입
@@ -54,39 +60,17 @@ const userSlice = createSlice({
         console.log("로그인 성공");
         state.loginLoading = false;
         state.user.username = action.payload.username;
-        state.user.nickname = action.payload.nickname;
-        state.user.email = action.payload.email;
         state.loginDone = true;
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("authenticatedUser", action.payload.username);
       })
       .addCase(logIn.rejected, (state, action) => {
         console.log("로그인 실패");
         state.loginLoading = false;
         state.loginError = action.payload;
-      })
-      // 로그아웃
-      .addCase(logOut.pending, (state, action) => {
-        console.log("로그아웃 대기");
-        state.logoutLoading = false;
-        state.logoutDone = false;
-        state.logoutError = null;
-      })
-      .addCase(logOut.fulfilled, (state, action) => {
-        console.log("로그아웃 성공");
-        state.logoutLoading = false;
-        state.logoutDone = true;
-        state.loginDone = false;
-        state.signupDone = false;
-        state.user.username = null;
-        state.user.nickname = null;
-        state.user.email = null;
-        state.user.password = null;
-      })
-      .addCase(logOut.rejected, (state, action) => {
-        console.log("로그아웃 실패");
-        state.logoutLoading = false;
-        state.logoutError = action.payload;
       });
   },
 });
 
+export const { logOut } = userSlice.actions;
 export default userSlice;

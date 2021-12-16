@@ -5,6 +5,7 @@ import com.team.meett.repository.UserRepository;
 import com.team.meett.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,10 +17,15 @@ public class UserServiceImplV1 implements UserService {
 
     private final UserRepository userRepository;
 
+
     @Override
-    public Users findByUsername(String username) {
-        Users users = userRepository.findByUsername(username);
-        return users;
+    public Users findById(String username) {
+        return userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다"));
+    }
+
+    @Override
+    public boolean existsById(String username) {
+        return userRepository.existsById(username);
     }
 
     @Override

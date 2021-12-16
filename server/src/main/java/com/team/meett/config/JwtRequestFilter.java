@@ -25,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public static final String AUTHORIZATION_HEADER = "Authroization";
+    public static final String AUTHORIZATION_HEADER = "Authorization";
 
     @Autowired
     public JwtRequestFilter(JwtUserDetailService jwtUserDetailService, JwtTokenUtil jwtTokenUtil) {
@@ -44,8 +44,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String jwtToken = null;
 
         // JWT 토큰은 "Bearer token" 형식. Bearer 단어를 제거하고 토큰만 가져오기
+        log.debug(requestTokenHeader);
         if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
+            log.debug(jwtToken);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {

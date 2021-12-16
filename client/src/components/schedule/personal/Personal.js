@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ContainerWrapper, HeaderWrapper } from "./Personal.style";
+import { ContainerWrapper, HeaderWrapper } from "../commons/Wrapper.style";
 import PersonalCalendar from "./PersonalCalendar";
 import PersonalList from "./PersonalList";
 

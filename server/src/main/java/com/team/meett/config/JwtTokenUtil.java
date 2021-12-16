@@ -8,15 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtTokenUtil implements Serializable {
+public class JwtTokenUtil {
 
-    private static final long serialVersionUID = 1L;
     public static final long JWT_TOKEN_VALIDITY = 60 * 60 * 24 * 7;
 
     @Value("${jwt.secret}")
@@ -39,7 +39,7 @@ public class JwtTokenUtil implements Serializable {
 
     // 비밀키를 사용하여 토큰에서 정보를 검색
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJwt(token).getBody();
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
     // 토큰이 만료되었는지 확인

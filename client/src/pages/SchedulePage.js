@@ -33,13 +33,10 @@ const SchedulePage = () => {
           <SideBar />
 
           <Routes>
-            <Route path="/team" element={<Schedule title="TEAM SCHEDULE" />} />
+            <Route path="/team" element={<Schedule title="ROOM LIST" />} />
             <Route path="/my" element={<Schedule title="MY SCHEDULE" />} />
-            <Route path="/mypage" element={<Schedule title="MY SCHEDULE" />} />
-            <Route
-              path="/settings"
-              element={<Schedule title="MY SCHEDULE" />}
-            />
+            <Route path="/mypage" element={<Schedule title="MY PAGE" />} />
+            <Route path="/settings" element={<Schedule title="SETTINGS" />} />
           </Routes>
         </div>
       </Container>

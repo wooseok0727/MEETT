@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { TableWrapper } from "./PersonalList.style";
+import { TableWrapper } from "../commons/Table.style";
 
 const scheduleData = [
   {
