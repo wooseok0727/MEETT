@@ -2,6 +2,7 @@ package com.team.meett.controller;
 
 import com.team.meett.model.Room;
 import com.team.meett.model.Team;
+import com.team.meett.model.TeamSchedule;
 import com.team.meett.service.RoomService;
 import com.team.meett.service.SearchService;
 import lombok.RequiredArgsConstructor;
@@ -56,19 +57,33 @@ public class RoomController {
         return ResponseEntity.status(200).body(room);
     }
 
-//    @GetMapping("/test")
-//    public ResponseEntity searchTeam(@RequestParam(value = "title", required = false)String title){
-//
-//        List<Team> teamList;
-//        if(title != null){
-//            teamList = searchService.searchByTitle(title);
-//            if(teamList.isEmpty()){
-//                return ResponseEntity.ok().body(title + "은 존재하지 않는 모임");
-//            }
-//        } else {
-//            return ResponseEntity.ok().body("검색어를 입력해주세요");
-//        }
-//        return ResponseEntity.ok(teamList);
-//    }
+    @GetMapping("/test")
+    public ResponseEntity searchTeam(@RequestParam(value = "title", required = false) String title){
+
+        List<Team> teamList;
+        if(title != null){
+            teamList = searchService.searchByContainTeamTitle(title);
+            if(teamList.isEmpty()){
+                return ResponseEntity.ok().body(title + "은 존재하지 않는 모임");
+            }
+        } else {
+            return ResponseEntity.ok().body("검색어를 입력해주세요");
+        }
+        return ResponseEntity.ok(teamList);
+    }
+
+    @GetMapping("/test2")
+    public ResponseEntity searchSchedule(@RequestParam(value = "title", required = false) String title){
+        List<TeamSchedule> teamScheduleList;
+        if(title != null){
+            teamScheduleList = searchService.searchByTeamScheduleTitle(title);
+            if(teamScheduleList.isEmpty()){
+                return ResponseEntity.ok().body(title + "은 존재하지 않는 스케줄명");
+            }
+        } else {
+            return ResponseEntity.ok().body("검색어를 입력해주세요");
+        }
+        return ResponseEntity.ok(teamScheduleList);
+    }
 
 }

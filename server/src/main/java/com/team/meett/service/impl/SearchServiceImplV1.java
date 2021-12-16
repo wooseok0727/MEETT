@@ -1,7 +1,9 @@
 package com.team.meett.service.impl;
 
 import com.team.meett.model.Team;
+import com.team.meett.model.TeamSchedule;
 import com.team.meett.repository.TeamRepository;
+import com.team.meett.repository.TeamScheduleRepository;
 import com.team.meett.service.SearchService;
 import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +18,33 @@ import java.util.List;
 public class SearchServiceImplV1 implements SearchService {
 
     private final TeamRepository teamRepository;
+    private final TeamScheduleRepository teamScheduleRepository;
 
-    @PersistenceContext
-    private EntityManager em;
+
+    // Team의 Title 유사 검색
+    @Override
+    public List<Team> searchByContainTeamTitle(String title) {
+        return teamRepository.findByTitleContains(title);
+    }
 
     @Override
-    public List<Team> searchByTitle(String title) {
-        List<Team> teamList = em.createQuery("select t from Team t where t.title like '%title%'", Team.class)
-                .setParameter(title, "title")
-                .getResultList();
-        return teamList;
+    public List<Team> searchByTeamTitle(String title) {
+
+        return teamRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<TeamSchedule> searchByContainTeamScheduleTitle(String title) {
+        return teamScheduleRepository.findByTitleContains(title);
+    }
+
+    @Override
+    public List<TeamSchedule> searchByTeamScheduleTitle(String title) {
+        return teamScheduleRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<TeamSchedule> searchByContainTeamScheduleDetail(String detail) {
+        return teamScheduleRepository.findByDetailContains(detail);
     }
 }

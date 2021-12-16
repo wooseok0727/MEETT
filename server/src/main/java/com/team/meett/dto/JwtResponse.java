@@ -1,4 +1,4 @@
-package com.team.meett.DTO;
+package com.team.meett.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
