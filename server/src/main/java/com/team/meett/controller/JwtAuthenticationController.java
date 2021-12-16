@@ -1,7 +1,7 @@
 package com.team.meett.controller;
 
-import com.team.meett.DTO.JwtRequest;
-import com.team.meett.DTO.JwtResponse;
+import com.team.meett.dto.JwtRequest;
+import com.team.meett.dto.JwtResponse;
 import com.team.meett.config.JwtRequestFilter;
 import com.team.meett.config.JwtTokenUtil;
 import com.team.meett.service.JwtUserDetailService;
@@ -16,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
