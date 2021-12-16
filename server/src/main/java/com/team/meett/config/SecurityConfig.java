@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,10 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider bean = new DaoAuthenticationProvider();
+        bean.setHideUserNotFoundExceptions(false);
+        bean.setUserDetailsService(jwtUserDetailService);
+//        bean.setPasswordEncoder(passwordEncoder());
+        return bean;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 추후 BCryptPasswordEncoder 사용하여 구현
-        auth.userDetailsService(jwtUserDetailService);
+        auth.authenticationProvider(this.daoAuthenticationProvider());
     }
 
 //    @Bean
@@ -56,34 +66,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.cors().configurationSource(request -> {
-//            CorsConfiguration cors = new CorsConfiguration();
-//            cors.setAllowedOrigins(List.of("http://localhost:3000"));
-//            cors.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
-//            cors.setAllowCredentials(true);
-//            cors.setAllowedHeaders(List.of("*"));
-//            return cors;
-//        });
-//        // CSRF 해제
-//        http.csrf().disable()
-//                // /authenticate 자유로운 접근
-//                .authorizeRequests().antMatchers("/authenticate").permitAll()
-//                // 나머지 인증 필요
-//                .anyRequest().authenticated().and()
-//                //  stateless session 사용하는지 확인
-//                //  세션은 사용자의 상태를 저장하는 데 사용되지 않는다
-//                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//        // 모든 요청에 대해 토큰의 유효성을 검사하는 필터 추가
-//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().httpBasic().disable().
-                csrf().disable();
+        http.cors().configurationSource(request -> {
+            CorsConfiguration cors = new CorsConfiguration();
+            cors.setAllowedOrigins(List.of("http://localhost:3000"));
+            cors.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+            cors.setAllowCredentials(true);
+            cors.setAllowedHeaders(List.of("*"));
+            return cors;
+        });
+        // CSRF 해제
+        http.csrf().disable()
+                // /authenticate 자유로운 접근
+                .authorizeRequests().antMatchers("/user/**").permitAll()
+                // 나머지 인증 필요
+                .anyRequest().authenticated().and()
+                //  stateless session 사용하는지 확인
+                //  세션은 사용자의 상태를 저장하는 데 사용되지 않는다
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // 모든 요청에 대해 토큰의 유효성을 검사하는 필터 추가
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

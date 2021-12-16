@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Header from "./Header";
 import Personal from "./personal/Personal";
+import Room from "./room/Room";
 import {
   ScrollWrapper,
   ContainerWrapper,
@@ -17,7 +18,10 @@ const Schedule = ({ title }) => {
         <SchedulerWrapper>
           <Header title={title} />
           <div className="content">
-            <Personal />
+            {title === "ROOM LIST" && <Room />}
+            {title === "MY SCHEDULE" && <Personal />}
+            {title === "MY PAGE" && <Personal />}
+            {title === "SETTINGS" && <Personal />}
           </div>
         </SchedulerWrapper>
       </ContainerWrapper>

@@ -7,5 +7,8 @@ import lombok.Getter;
 @Getter
 public class JwtResponse {
 
-    private final String jwttoken;
+    private final String username;
+    private final String nickname;
+    private final String token;
+
 }

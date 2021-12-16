@@ -17,6 +17,7 @@ const PersonalCalendar = () => {
   const data = extend([], dataSource.zooEventsData, null, true);
 
   const scheduleRef = useRef();
+  console.log(scheduleRef.current);
 
   const onEventRendered = (args) => {
     applyCategoryColor(args, scheduleRef.currentView);

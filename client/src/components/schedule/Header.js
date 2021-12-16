@@ -13,7 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { AvatarGroup, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { logOut } from "../../actions/user";
+import { logOut } from "../../reducers/user";
 
 const Header = ({ title }) => {
   const { theme } = useSelector((state) => state.theme);
@@ -34,6 +34,8 @@ const Header = ({ title }) => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("authenticatedUser");
     dispatch(logOut());
     navigate("/", { replace: true });
   };

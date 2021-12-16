@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-import "./App.css";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import PublicRoute from "./components/auth/PublicRoute";
 import * as PAGE from "./pages";
@@ -9,7 +8,6 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        restricted={true}
         element={
           <PublicRoute>
             <PAGE.HomePage />
@@ -18,7 +16,6 @@ const App = () => {
       />
       <Route
         path="/login"
-        restricted={true}
         element={
           <PublicRoute>
             <PAGE.LoginPage />
@@ -27,7 +24,6 @@ const App = () => {
       />
       <Route
         path="/register"
-        restricted={true}
         element={
           <PublicRoute>
             <PAGE.RegisterPage />

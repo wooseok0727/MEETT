@@ -20,6 +20,7 @@ const ContainerWrapper = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   margin-bottom: 24px;
+  font-family: "Poppins", sans-serif;
   .title {
     font-size: 20px;
     font-weight: 700;
