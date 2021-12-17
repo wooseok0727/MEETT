@@ -42,12 +42,11 @@ public class TeamServiceImplV1 implements TeamService {
     }
 
     @Override
-    public void update(TeamRequestDto team) {
-        if (teamRepository.existsById(team.getTeamId())) {
+    public void update(TeamRequestDto team, String id) {
+        if (teamRepository.existsById(id)) {
             teamRepository.save(team.toEntity());
             //서버에서 처리 했으나 혹시 프론트에서도 필요한 값인지
         }
-
     }
 
     @Override

@@ -48,7 +48,7 @@ public class UserScheduleController {
 
     //    update
     @PutMapping("/user/{seq}")
-    public UsRequestDto update(@RequestBody UsRequestDto updateUserSchedule, @RequestParam Long seq) {
+    public UsRequestDto update(@RequestBody UsRequestDto updateUserSchedule, @PathVariable Long seq) {
         UsService.update(updateUserSchedule, seq);
         return updateUserSchedule; //ResponseEntity.status(200).body(userSchedule);
     }

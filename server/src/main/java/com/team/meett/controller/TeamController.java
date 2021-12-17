@@ -57,14 +57,14 @@ public class TeamController {
 
     //update
     @PutMapping(value = "/team/{id}")
-    public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam) {
+    public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam, @PathVariable String id) {
 
 //        Team team = teamService.findById(teamId);
 //        if(team == null){
 //            return ResponseEntity.ok().body("존재하지 않는 팀");
 //        }
 //        team = updateTeam;
-        teamService.update(updateTeam);
+        teamService.update(updateTeam, id);
         return updateTeam; // ()ResponseEntity.ok().body(updateTeam);
     }
 
