@@ -1,5 +1,7 @@
 package com.team.meett.controller;
 
+import com.team.meett.dto.SearchTeamResponseDto;
+import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Room;
 import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
@@ -60,9 +62,11 @@ public class RoomController {
     @GetMapping("/test")
     public ResponseEntity searchTeam(@RequestParam(value = "title", required = false) String title){
 
-        List<Team> teamList;
+        List<SearchTeamResponseDto> teamList;
         if(title != null){
             teamList = searchService.searchByContainTeamTitle(title);
+            teamList.addAll(0,searchService.searchByTeamTitle(title));
+
             if(teamList.isEmpty()){
                 return ResponseEntity.ok().body(title + "은 존재하지 않는 모임");
             }
@@ -73,12 +77,12 @@ public class RoomController {
     }
 
     @GetMapping("/test2")
-    public ResponseEntity searchSchedule(@RequestParam(value = "title", required = false) String title){
+    public ResponseEntity searchSchedule(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value="detail", required = false) String detail){
         List<TeamSchedule> teamScheduleList;
-        if(title != null){
-            teamScheduleList = searchService.searchByTeamScheduleTitle(title);
+        if(teamId != null){
+            teamScheduleList = searchService.searchByTeam_idAndDetailContains(teamId, detail);
             if(teamScheduleList.isEmpty()){
-                return ResponseEntity.ok().body(title + "은 존재하지 않는 스케줄명");
+                return ResponseEntity.ok().body(detail + "은 존재하지 않는 스케줄명");
             }
         } else {
             return ResponseEntity.ok().body("검색어를 입력해주세요");
