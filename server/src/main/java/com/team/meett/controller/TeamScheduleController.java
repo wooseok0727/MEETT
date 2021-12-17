@@ -35,9 +35,9 @@ public class TeamScheduleController {
     }
 
     // 팀방 스케줄 수정
-    @PutMapping("/team")
-    public TeamSchedule update(@RequestBody TeamSchedule updateTeamSchedule){
-        teamScheduleService.update(updateTeamSchedule);
+    @PutMapping("/team/{seq}")
+    public TeamSchedule update(@RequestBody TeamSchedule updateTeamSchedule, @PathVariable Long seq){
+        teamScheduleService.update(updateTeamSchedule,seq);
         return updateTeamSchedule; //ResponseEntity.status(200).body(teamScheduleService.selectAll());
     }
 

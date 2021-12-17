@@ -14,6 +14,6 @@ public interface TeamService {
     public List<TeamResponseDto> findByTitle(String title);
 
     public void insert(TeamRequestDto team);
-    public void update(TeamRequestDto team);
+    public void update(TeamRequestDto team, String id);
     public String delete(String teamId);
 }

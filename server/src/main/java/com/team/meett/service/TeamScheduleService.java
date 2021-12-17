@@ -13,7 +13,7 @@ public interface TeamScheduleService {
     public TeamSchedule findBySeq(Long seq);
 
     public void insert(TeamSchedule teamSchedule);
-    public void update(TeamSchedule teamSchedule);
+    public void update(TeamSchedule teamSchedule, Long seq);
     public void delete(Long seq);
 
 }
