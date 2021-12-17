@@ -15,7 +15,6 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/schedule")
 @RequiredArgsConstructor
 public class TeamController {
 
@@ -49,10 +48,12 @@ public class TeamController {
     }
 
     //update
-    @PutMapping(value = "/team/{id}")
-    public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam, @PathVariable String id) {
+    @PutMapping(value = "/team/{TeamId}")
+    public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam, @PathVariable String TeamId) {
 
-        teamService.update(updateTeam, id);
+
+        teamService.update(updateTeam, TeamId);
+
         return updateTeam; // ()ResponseEntity.ok().body(updateTeam);
     }
 
@@ -64,4 +65,5 @@ public class TeamController {
         }
         throw new EmptyResultDataAccessException(1);//임시코드
     }
+
 }

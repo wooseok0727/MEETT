@@ -16,6 +16,6 @@ public class TeamResponseDto {
         this.teamId = team.getId();
         this.title = team.getTitle();
         this.username = team.getUsername();
-        this.password = team.getPassword();
+       this.password = team.getPassword();
     }
 }

@@ -1,15 +1,13 @@
 package com.team.meett.dto;
 
 import com.team.meett.model.Team;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 //PUT, POST 요청에 대해
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class TeamRequestDto {
     private String teamId;
     private String title;
@@ -25,6 +23,7 @@ public class TeamRequestDto {
 
     public Team toEntity() {
         return Team.builder()
+                .id(teamId)
                 .title(title)
                 .username(username)
                 .password(password)
