@@ -1,5 +1,7 @@
 package com.team.meett.service.impl;
 
+import com.team.meett.dto.UsRequestDto;
+import com.team.meett.dto.UsResponseDto;
 import com.team.meett.model.UserSchedule;
 import com.team.meett.repository.UserScheduleRepository;
 import com.team.meett.service.UserScheduleService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service("UsService")
@@ -19,36 +22,34 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
     private final UserScheduleRepository UsRepository;
 
     @Override
-    public List<UserSchedule> selectAll() {
-        return UsRepository.findAll();
+    public List<UsResponseDto> selectAll() {
+        return UsRepository.findAll().stream().map(UsResponseDto::new).collect(Collectors.toList());
     }
 
     @Override
-    public UserSchedule findById(Long seq) {
-        Optional<UserSchedule> userSchedule = UsRepository.findById(seq);
-        return userSchedule.orElse(null);
+    public Optional<UsResponseDto> findById(Long seq) {
+        return UsRepository.findById(seq).map(UsResponseDto::new);
     }
 
     @Override
-    public List<UserSchedule> findByUsername(String username) {
-        return UsRepository.findByUsername(username);
+    public List<UsResponseDto> findByUsername(String username) {
+        return UsRepository.findByUsername(username).stream().map(UsResponseDto::new).collect(Collectors.toList());
     }
 
     @Override
-    public List<UserSchedule> findByTitle(String title) {
-        return UsRepository.findByTitle(title);
+    public List<UsResponseDto> findByTitle(String title) {
+        return UsRepository.findByTitle(title).stream().map(UsResponseDto::new).collect(Collectors.toList());
     }
 
     @Override
-    public void insert(UserSchedule userSchedule) {
-        UsRepository.save(userSchedule);
+    public void insert(UsRequestDto userSchedule) {
+        UsRepository.save(userSchedule.toEntity());
     }
 
     @Override
-    public void update(UserSchedule userSchedule) {
-        if(UsRepository.existsById(userSchedule.getSeq())){
-
-            UsRepository.save(userSchedule);
+    public void update(UsRequestDto userSchedule, Long usSeq) {
+        if(UsRepository.existsById(usSeq)){
+            UsRepository.save(userSchedule.toEntity());
         }
     }
 

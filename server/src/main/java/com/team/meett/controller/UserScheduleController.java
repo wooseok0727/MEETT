@@ -1,6 +1,7 @@
 package com.team.meett.controller;
 
-import com.team.meett.model.UserSchedule;
+import com.team.meett.dto.UsRequestDto;
+import com.team.meett.dto.UsResponseDto;
 import com.team.meett.service.UserScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class UserScheduleController {
     @GetMapping("/user/{username}")
     public ResponseEntity<?> selectUsername(@PathVariable String username) {
 
-        List<UserSchedule> UsList = UsService.findByUsername(username);
+        List<UsResponseDto> UsList = UsService.findByUsername(username);
         log.debug(UsList.toString());
         if (UsList.isEmpty()) {
             return ResponseEntity.ok().body("데이터 없음");
@@ -40,16 +41,16 @@ public class UserScheduleController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> insert(@RequestBody UserSchedule userSchedule) {
+    public ResponseEntity<?> insert(@RequestBody UsRequestDto userSchedule) {
         UsService.insert(userSchedule);
         return ResponseEntity.status(200).body(userSchedule);
     }
 
     //    update
-    @PutMapping("/user")
-    public UserSchedule update(@RequestBody UserSchedule updateUserSchedule) {
-        UsService.update(updateUserSchedule);
-        return updateUserSchedule;//ResponseEntity.status(200).body(userSchedule);
+    @PutMapping("/user/{seq}")
+    public UsRequestDto update(@RequestBody UsRequestDto updateUserSchedule, @RequestParam Long seq) {
+        UsService.update(updateUserSchedule, seq);
+        return updateUserSchedule; //ResponseEntity.status(200).body(userSchedule);
     }
 
     //    delete
