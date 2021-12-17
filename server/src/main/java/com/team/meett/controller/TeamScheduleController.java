@@ -11,12 +11,13 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/tschedule")
+@RequestMapping("/schedule")
 @RequiredArgsConstructor
 public class TeamScheduleController {
 
     protected final TeamScheduleService teamScheduleService;
 
+    // team schedule 전체 조회
     @GetMapping("/team/{teamId}")
     public ResponseEntity<?> selectUsername(@PathVariable String teamId){
         List<TeamSchedule> tsList = teamScheduleService.findByTeamId(teamId);

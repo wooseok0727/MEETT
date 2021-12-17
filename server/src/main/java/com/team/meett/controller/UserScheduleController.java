@@ -33,12 +33,12 @@ public class UserScheduleController {
     }
 
 
-    //    insert get-mapping post-mapping
-    @GetMapping("/user")
-    public ResponseEntity<?> insert() {
-
-        return ResponseEntity.status(200).build();
-    }
+//    //    insert get-mapping post-mapping
+//    @GetMapping("/user")
+//    public ResponseEntity<?> insert() {
+//
+//        return ResponseEntity.status(200).build();
+//    }
 
     @PostMapping("/user")
     public ResponseEntity<?> insert(@RequestBody UsRequestDto userSchedule) {

@@ -16,7 +16,7 @@ public interface RoomService {
     public Room findByUsernameAndTeamId(String username, String teamId);
 
     public void insert(Room room);
-    public void update(Room room);
+    public void update(Room room, Long seq);
     public void delete(Long seq);
 
 }

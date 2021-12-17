@@ -26,14 +26,20 @@ public class RoomServiceImplV1 implements RoomService {
         roomRepository.save(room);
     }
 
+    // return 값 논의 필요
     @Override
-    public void update(Room room) {
-        roomRepository.save(room);
+    public void update(Room room, Long seq) {
+        if(roomRepository.existsById(seq)){
+            roomRepository.save(room);
+        }
     }
 
+    // return 값 논의 필요
     @Override
     public void delete(Long seq) {
-        roomRepository.deleteById(seq);
+        if(roomRepository.existsById(seq)){
+            roomRepository.deleteById(seq);
+        }
     }
 
     @Override

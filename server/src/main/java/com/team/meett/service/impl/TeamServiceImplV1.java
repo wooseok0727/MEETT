@@ -20,21 +20,23 @@ public class TeamServiceImplV1 implements TeamService {
 
     private final TeamRepository teamRepository;
 
+    // 전체 Team List 조회
     @Override
     public List<TeamResponseDto> selectAll() {
         return teamRepository.findAll().stream().map(TeamResponseDto::new).collect(Collectors.toList());
     }
 
+    // 단일 Team 정보 조회
     @Override
     public Optional<TeamResponseDto> findById(String teamId) {
         return teamRepository.findById(teamId).map(TeamResponseDto::new);
     }
 
+    // 유효성 검사
     @Override
     public List<TeamResponseDto> findByTitle(String title) {
         return teamRepository.findByTitle(title).stream().map(TeamResponseDto::new).collect(Collectors.toList());
     }
-
 
     @Override
     public void insert(TeamRequestDto team) {
@@ -49,6 +51,7 @@ public class TeamServiceImplV1 implements TeamService {
         }
     }
 
+    // return 값 논의 필요
     @Override
     public String delete(String teamId) {
         if (teamRepository.existsById(teamId)) {
