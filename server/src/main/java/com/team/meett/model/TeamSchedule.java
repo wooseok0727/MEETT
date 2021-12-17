@@ -34,11 +34,9 @@ public class TeamSchedule {
     private String detail;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-//    @Column(nullable = false)
     private Date start;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-//    @Column(nullable = false)
     private Date end;
 
     @ColumnDefault("0")

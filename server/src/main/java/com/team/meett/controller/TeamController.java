@@ -27,6 +27,7 @@ public class TeamController {
         log.debug("실행");
         List<TeamResponseDto> teamList;
         if (title != null) {
+            // findByTitle -> searchByTitle 로 변경
             teamList = teamService.findByTitle(title);
             if (teamList.isEmpty()) {
                 return ResponseEntity.badRequest().body(title + "은 존재하지 않는 모임입니다");
@@ -40,16 +41,8 @@ public class TeamController {
         return ResponseEntity.ok().body(teamList);
     }
 
-    // get insert post insert
-    @GetMapping("/team/create")
-
-    public ResponseEntity<?> teamCreate() {
-        return ResponseEntity.ok().build();
-    }
-
     @PostMapping("/team/create")
     public TeamRequestDto teamCreate(@RequestBody TeamRequestDto team) {
-        //DefaultHandlerExceptionResolver
 
         teamService.insert(team);
         return team; //ResponseEntity.ok().body(team);
@@ -59,11 +52,6 @@ public class TeamController {
     @PutMapping(value = "/team/{id}")
     public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam, @PathVariable String id) {
 
-//        Team team = teamService.findById(teamId);
-//        if(team == null){
-//            return ResponseEntity.ok().body("존재하지 않는 팀");
-//        }
-//        team = updateTeam;
         teamService.update(updateTeam, id);
         return updateTeam; // ()ResponseEntity.ok().body(updateTeam);
     }
@@ -76,35 +64,4 @@ public class TeamController {
         }
         throw new EmptyResultDataAccessException(1);//임시코드
     }
-
-
-    //예외처리
-//    @ExceptionHandler
-//    public ResponseEntity<ErrorResponse> errorHandling(Exception e) {
-//        ErrorResponse response = new ErrorResponse();
-////        SimpleDateFormat timestamping = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-////        String timestamp = timestamping.format(System.currentTimeMillis());
-//
-//        if (e instanceof InvalidDataAccessApiUsageException) {
-//            //status 500
-//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-//            response.setMessage("수정되는 데이터 값이 반드시 필요합니다::Entity must not be null.");
-//        } else if (e instanceof EmptyResultDataAccessException) {
-//            //status 500
-//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-//            response.setMessage("삭제하고자 하는 Id가 존재하지 않습니다::No class entity with id exists!");
-//        } else if (e instanceof HttpMessageNotReadableException) {
-//            //status 400
-//            response.setStatusCode(HttpStatus.BAD_REQUEST.value());
-//            response.setMessage("임시! insert하는 데이터 값이 JsonBody가 아닐때 발생됨::Required request body is missing");
-//        } else if (e instanceof HttpMediaTypeNotSupportedException) {
-//            //status 415
-//            response.setStatusCode(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value());
-//            response.setMessage("Content type not supported::");
-//        }
-////        response.setTimestamp();
-//
-//        return ResponseEntity.status(response.getStatusCode()).body(response);
-//    }
-
 }

@@ -39,8 +39,8 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
     }
 
     @Override
-    public TeamSchedule findBySeq(Long seq) {
-        return teamScheduleRepository.findBySeq(seq);
+    public Optional<TeamSchedule> findById(Long seq) {
+        return teamScheduleRepository.findById(seq);
     }
 
 
@@ -50,6 +50,7 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
 
     }
 
+    // return 값 논의 필요
     @Override
     public void update(TeamSchedule teamSchedule, Long seq) {
         if (teamScheduleRepository.existsById(seq)) {
@@ -57,8 +58,11 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
         }
     }
 
+    // return 값 논의 필요
     @Override
     public void delete(Long seq) {
-        teamScheduleRepository.deleteById(seq);
+        if(teamScheduleRepository.existsById(seq)){
+            teamScheduleRepository.deleteById(seq);
+        }
     }
 }

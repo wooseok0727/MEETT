@@ -3,6 +3,7 @@ package com.team.meett.service;
 import com.team.meett.model.TeamSchedule;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TeamScheduleService {
 
@@ -10,7 +11,7 @@ public interface TeamScheduleService {
 
     public List<TeamSchedule> findByUsername(String username);
     public List<TeamSchedule> findByTeamId(String teamId);
-    public TeamSchedule findBySeq(Long seq);
+    public Optional<TeamSchedule> findById(Long seq);
 
     public void insert(TeamSchedule teamSchedule);
     public void update(TeamSchedule teamSchedule, Long seq);

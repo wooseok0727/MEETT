@@ -18,7 +18,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserScheduleServiceImplV1 implements UserScheduleService {
 
-    //    @Autowired
+    /**
+     * findByUsernameAndTitle service 생성 필요(사용자가 mypage에서 자신의 schedule 검색할 때)
+     *
+     */
+
     private final UserScheduleRepository UsRepository;
 
     @Override
@@ -36,6 +40,7 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
         return UsRepository.findByUsername(username).stream().map(UsResponseDto::new).collect(Collectors.toList());
     }
 
+    // findByUsernameAndTitle로 변경해야함
     @Override
     public List<UsResponseDto> findByTitle(String title) {
         return UsRepository.findByTitle(title).stream().map(UsResponseDto::new).collect(Collectors.toList());
@@ -53,6 +58,7 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
         }
     }
 
+    // return 값 추가논의
     @Override
     public int delete(Long seq) {
         //seq값이 존재하는지 체크 후 코드 실행
