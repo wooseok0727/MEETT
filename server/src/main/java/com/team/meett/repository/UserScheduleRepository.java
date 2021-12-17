@@ -12,4 +12,5 @@ public interface UserScheduleRepository extends JpaRepository<UserSchedule, Long
     public List<UserSchedule> findByUsername(String username);
 
     public List<UserSchedule> findByTitle(String title);
+
 }

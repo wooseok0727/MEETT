@@ -16,12 +16,12 @@ public class TeamRequestDto {
     private String username;
     private String password;
 
-    @Builder
-    public TeamRequestDto(String title, String username, String password) {
-        this.title = title;
-        this.username = username;
-        this.password = password;
-    }
+//    @Builder
+//    public TeamRequestDto(String title, String username, String password) {
+//        this.title = title;
+//        this.username = username;
+//        this.password = password;
+//    }
 
     public Team toEntity() {
         return Team.builder()
