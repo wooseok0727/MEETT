@@ -4,7 +4,9 @@ import com.team.meett.dto.SearchTeamResponseDto;
 import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
+import com.team.meett.model.UserSchedule;
 
+import java.util.Date;
 import java.util.List;
 
 public interface SearchService {
@@ -15,4 +17,9 @@ public interface SearchService {
     public List<TeamSchedule> searchByContainTeamScheduleTitle(String teamId, String title);
     public List<TeamSchedule> searchByTeamScheduleTitle(String teamId, String title);
     public List<TeamSchedule> searchByTeam_idAndDetailContains(String teamId, String details);
+
+    public String searchByPassword(String teamId);
+
+    public List<TeamSchedule> searchByTeamDate(Date start, Date end);
+    public List<UserSchedule> searchByUserDate(Date start, Date end);
 }

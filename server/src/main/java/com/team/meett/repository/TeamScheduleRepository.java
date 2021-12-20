@@ -3,6 +3,7 @@ package com.team.meett.repository;
 import com.team.meett.model.TeamSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,4 +19,5 @@ public interface TeamScheduleRepository extends JpaRepository<TeamSchedule, Long
     public List<TeamSchedule> findByTeam_idAndTitleContains(String teamId, String title);
     public List<TeamSchedule> findByTeam_idAndTitle(String teamId, String title);
     public List<TeamSchedule> findByTeam_idAndDetailContains(String teamId, String details);
+    public List<TeamSchedule> findByStartLessThanEqualAndEndGreaterThanEqual(Date start, Date end);
 }
