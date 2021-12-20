@@ -1,5 +1,6 @@
 package com.team.meett.repository;
 
+import com.team.meett.model.Team;
 import com.team.meett.model.UserSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,5 +13,7 @@ public interface UserScheduleRepository extends JpaRepository<UserSchedule, Long
     public List<UserSchedule> findByUsername(String username);
 
     public List<UserSchedule> findByTitle(String title);
+
+    public List<UserSchedule> findByStartLessThanEqualAndEndGreaterThanEqual(Date start, Date end);
 
 }
