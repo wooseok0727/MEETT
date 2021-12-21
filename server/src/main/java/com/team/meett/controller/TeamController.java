@@ -41,7 +41,6 @@ public class TeamController {
 
     @PostMapping("/team/create")
     public TeamRequestDto teamCreate(@RequestBody TeamRequestDto team) {
-
         teamService.insert(team);
         return team; //ResponseEntity.ok().body(team);
     }
@@ -49,20 +48,14 @@ public class TeamController {
     //update
     @PutMapping(value = "/team/{TeamId}")
     public TeamRequestDto update(@RequestBody TeamRequestDto updateTeam, @PathVariable String TeamId) {
-
-
         teamService.update(updateTeam, TeamId);
-
-        return updateTeam; // ()ResponseEntity.ok().body(updateTeam);
+        return updateTeam;
     }
 
     @DeleteMapping("/team/{teamId}")
     public ResponseEntity<?> delete(@PathVariable String teamId) {
-        String result = teamService.delete(teamId);
-        if (result.equals("succeed")) {
-            return ResponseEntity.ok().body("삭제완료");
-        }
-        throw new EmptyResultDataAccessException(1);//임시코드
+        teamService.delete(teamId);
+        return ResponseEntity.ok().body("삭제 성공");
     }
 
 }
