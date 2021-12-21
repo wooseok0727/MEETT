@@ -65,6 +65,7 @@ public class RoomController {
     }
 
 
+
     @GetMapping("/test")
     public ResponseEntity searchTeam(@RequestParam(value = "title", required = false) String title){
 
@@ -96,6 +97,7 @@ public class RoomController {
         return ResponseEntity.ok(teamScheduleList);
     }
 
+    // POST 변경
     @GetMapping("/test3")
     public ResponseEntity searchPassword(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value = "password", required = false) String password){
 
@@ -108,14 +110,16 @@ public class RoomController {
     }
 
     @GetMapping("/test4")
-    public ResponseEntity searchTeamDate(@RequestParam(value = "start", required = false)String start, @RequestParam(value = "end", required = false) String end) throws ParseException {
+    public ResponseEntity searchTeamDate(@RequestParam(value = "teamId", required = false)String teamId,
+                                         @RequestParam(value = "start", required = false)String start,
+                                         @RequestParam(value = "end", required = false) String end) throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Date dStart = formatter.parse(start);
         Date dEnd = formatter.parse(end);
 
-        List<TeamSchedule> teamScheduleList = searchService.searchByTeamDate(dStart, dEnd);
+        List<TeamSchedule> teamScheduleList = searchService.searchByTeamDate(teamId, dStart, dEnd);
         /**
          * DB의 Date Type과 Entity의 Date Type 을 일치 시켜주고 시간은 빼야한다
          * 현재 이렇게 시간 값까지 도출된다 -> 2021-02-05 00:00:00.0
@@ -127,14 +131,16 @@ public class RoomController {
     }
 
     @GetMapping("/test5")
-    public ResponseEntity searchUserDate(@RequestParam(value = "start", required = false) String start, @RequestParam(value = "end", required = false) String end) throws ParseException {
+    public ResponseEntity searchUserDate(@RequestParam(value = "username", required = false) String username,
+                                         @RequestParam(value = "start", required = false) String start,
+                                         @RequestParam(value = "end", required = false) String end) throws ParseException {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dStart = formatter.parse(start);
         Date dEnd = formatter.parse(end);
 
-        List<UserSchedule> teamList = searchService.searchByUserDate(dStart, dEnd);
-        return ResponseEntity.status(200).body(teamList);
+        List<UserSchedule> userScheduleList = searchService.searchByUserDate(username, dStart, dEnd);
+        return ResponseEntity.status(200).body(userScheduleList);
     }
 
 }

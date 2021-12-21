@@ -63,13 +63,13 @@ public class SearchServiceImplV1 implements SearchService {
     }
 
     @Override
-    public List<TeamSchedule> searchByTeamDate(Date start, Date end) {
+    public List<TeamSchedule> searchByTeamDate(String teamId, Date start, Date end) {
 
-        return teamScheduleRepository.findByStartLessThanEqualAndEndGreaterThanEqual(start, end);
+        return teamScheduleRepository.findByTeam_idAndStartLessThanEqualAndEndGreaterThanEqual(teamId, start, end);
     }
 
     @Override
-    public List<UserSchedule> searchByUserDate(Date start, Date end) {
-        return userScheduleRepository.findByStartLessThanEqualAndEndGreaterThanEqual(start, end);
+    public List<UserSchedule> searchByUserDate(String username, Date start, Date end) {
+        return userScheduleRepository.findByUsernameAndStartLessThanEqualAndEndGreaterThanEqual(username, start, end);
     }
 }
