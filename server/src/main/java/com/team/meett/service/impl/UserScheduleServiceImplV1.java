@@ -7,6 +7,7 @@ import com.team.meett.repository.UserScheduleRepository;
 import com.team.meett.service.UserScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,6 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
 
     /**
      * findByUsernameAndTitle service 생성 필요(사용자가 mypage에서 자신의 schedule 검색할 때)
-     *
      */
 
     private final UserScheduleRepository UsRepository;
@@ -53,22 +53,18 @@ public class UserScheduleServiceImplV1 implements UserScheduleService {
 
     @Override
     public void update(UsRequestDto userSchedule, Long usSeq) {
-        if(UsRepository.existsById(usSeq)){
+        if (UsRepository.existsById(usSeq)) {
             UsRepository.save(userSchedule.toEntity());
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 
     // return 값 추가논의
     @Override
-    public int delete(Long seq) {
+    public void delete(Long seq) {
         //seq값이 존재하는지 체크 후 코드 실행
         if (UsRepository.existsById(seq)) {
             UsRepository.deleteById(seq);
-        } else {
-            //존재하지 않는 seq값일 경우 return 0
-            return 0;
-        }
-        return 1;
+        } else throw new EmptyResultDataAccessException(1);
     }
 
 

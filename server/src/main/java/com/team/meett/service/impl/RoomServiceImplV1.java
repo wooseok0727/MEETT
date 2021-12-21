@@ -4,6 +4,7 @@ import com.team.meett.model.Room;
 import com.team.meett.repository.RoomRepository;
 import com.team.meett.service.RoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,17 +30,17 @@ public class RoomServiceImplV1 implements RoomService {
     // return 값 논의 필요
     @Override
     public void update(Room room, Long seq) {
-        if(roomRepository.existsById(seq)){
+        if (roomRepository.existsById(seq)) {
             roomRepository.save(room);
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 
     // return 값 논의 필요
     @Override
     public void delete(Long seq) {
-        if(roomRepository.existsById(seq)){
+        if (roomRepository.existsById(seq)) {
             roomRepository.deleteById(seq);
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 
     @Override
