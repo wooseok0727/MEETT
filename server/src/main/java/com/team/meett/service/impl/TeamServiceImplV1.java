@@ -2,11 +2,11 @@ package com.team.meett.service.impl;
 
 import com.team.meett.dto.TeamRequestDto;
 import com.team.meett.dto.TeamResponseDto;
-import com.team.meett.model.Team;
 import com.team.meett.repository.TeamRepository;
 import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,16 +49,14 @@ public class TeamServiceImplV1 implements TeamService {
         if (teamRepository.existsById(id)) {
             teamRepository.save(team.toEntity());
             //서버에서 처리 했으나 혹시 프론트에서도 필요한 값인지
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 
     // return 값 논의 필요
     @Override
-    public String delete(String teamId) {
+    public void delete(String teamId) {
         if (teamRepository.existsById(teamId)) {
             teamRepository.deleteById(teamId);
-            return "succeed";
-        }
-        return "fail";
+        } else throw new EmptyResultDataAccessException(1);
     }
 }
