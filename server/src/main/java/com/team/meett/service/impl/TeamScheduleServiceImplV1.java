@@ -5,6 +5,7 @@ import com.team.meett.dto.TsResponseDto;
 import com.team.meett.repository.TeamScheduleRepository;
 import com.team.meett.service.TeamScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -57,14 +58,14 @@ public class TeamScheduleServiceImplV1 implements TeamScheduleService {
     public void update(TsRequestDto teamSchedule, Long seq) {
         if (teamScheduleRepository.existsById(seq)) {
             teamScheduleRepository.save(teamSchedule.toEntity());
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 
     // return 값 논의 필요
     @Override
     public void delete(Long seq) {
-        if(teamScheduleRepository.existsById(seq)){
+        if (teamScheduleRepository.existsById(seq)) {
             teamScheduleRepository.deleteById(seq);
-        }
+        } else throw new EmptyResultDataAccessException(1);
     }
 }
