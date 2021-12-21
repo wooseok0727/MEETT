@@ -20,6 +20,6 @@ public interface SearchService {
 
     public String searchByPassword(String teamId);
 
-    public List<TeamSchedule> searchByTeamDate(Date start, Date end);
-    public List<UserSchedule> searchByUserDate(Date start, Date end);
+    public List<TeamSchedule> searchByTeamDate(String teamId, Date start, Date end);
+    public List<UserSchedule> searchByUserDate(String username, Date start, Date end);
 }

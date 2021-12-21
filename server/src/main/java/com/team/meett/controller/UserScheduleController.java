@@ -56,10 +56,9 @@ public class UserScheduleController {
     //    delete
     @DeleteMapping("/user/{seq}")
     public ResponseEntity<?> delete(@PathVariable Long seq) {
-        if(UsService.delete(seq) == 1){
-            return ResponseEntity.status(200).body("삭제 완료");
-        }
-        throw new EmptyResultDataAccessException(1); //임시코드 수정필요
+        UsService.delete(seq);
+        return ResponseEntity.status(200).body("삭제 완료");
+
     }
 
 }
