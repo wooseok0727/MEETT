@@ -1,6 +1,7 @@
 package com.team.meett.controller;
 
-import com.team.meett.model.TeamSchedule;
+import com.team.meett.dto.TsRequestDto;
+import com.team.meett.dto.TsResponseDto;
 import com.team.meett.service.TeamScheduleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class TeamScheduleController {
     // team schedule 전체 조회
     @GetMapping("/team/{teamId}")
     public ResponseEntity<?> selectUsername(@PathVariable String teamId){
-        List<TeamSchedule> tsList = teamScheduleService.findByTeamId(teamId);
+        List<TsResponseDto> tsList = teamScheduleService.findByTeamId(teamId);
 
         if(tsList.isEmpty()){
             return ResponseEntity.ok().body("teamschedule이 존재하지 않습니다");
@@ -30,14 +31,14 @@ public class TeamScheduleController {
 
     // 팀방 스케줄 등록
     @PostMapping("/team")
-    public ResponseEntity<?> insert(@RequestBody TeamSchedule teamSchedule){
+    public ResponseEntity<?> insert(@RequestBody TsRequestDto teamSchedule){
         teamScheduleService.insert(teamSchedule);
         return ResponseEntity.status(200).body(teamSchedule);
     }
 
     // 팀방 스케줄 수정
     @PutMapping("/team/{seq}")
-    public TeamSchedule update(@RequestBody TeamSchedule updateTeamSchedule, @PathVariable Long seq){
+    public TsRequestDto update(@RequestBody TsRequestDto updateTeamSchedule, @PathVariable Long seq){
         teamScheduleService.update(updateTeamSchedule,seq);
         return updateTeamSchedule; //ResponseEntity.status(200).body(teamScheduleService.selectAll());
     }
