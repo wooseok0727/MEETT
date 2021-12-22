@@ -7,6 +7,7 @@ import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class TeamServiceImplV1 implements TeamService {
 
     private final TeamRepository teamRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // 전체 Team List 조회
     @Override
@@ -40,15 +42,17 @@ public class TeamServiceImplV1 implements TeamService {
 
     @Override
     public void insert(TeamRequestDto team) {
+        //암호화코드
+        String encodePassword = passwordEncoder.encode(team.getPassword());
+        team.setPassword(encodePassword);
+
         teamRepository.save(team.toEntity());
     }
 
     @Override
     public void update(TeamRequestDto team, String id) {
-        log.debug("팀 {}",team.toString());
         if (teamRepository.existsById(id)) {
-            teamRepository.save(team.toEntity());
-            //서버에서 처리 했으나 혹시 프론트에서도 필요한 값인지
+            insert(team);
         } else throw new EmptyResultDataAccessException(1);
     }
 

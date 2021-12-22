@@ -90,4 +90,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 모든 요청에 대해 토큰의 유효성을 검사하는 필터 추가
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
+
+    //password encoding part
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
