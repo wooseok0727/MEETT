@@ -1,6 +1,7 @@
 package com.team.meett.controller;
 
 import com.team.meett.dto.SearchTeamResponseDto;
+import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Room;
 import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
@@ -11,6 +12,7 @@ import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -28,8 +30,10 @@ public class RoomController {
     protected final SearchService searchService;
     protected final TeamService teamService;
 
+    protected final PasswordEncoder passwordEncoder;
+
     @GetMapping("/{username}")
-    public ResponseEntity selectTeam(@PathVariable String username){
+    public ResponseEntity<?> selectTeam(@PathVariable String username){
         List<Room> roomList = roomService.findByUsername(username);
 
         if(roomList.isEmpty()){
@@ -39,7 +43,7 @@ public class RoomController {
     }
 
     @GetMapping("/teamId/{teamId}")
-    public ResponseEntity selectUser(@PathVariable String teamId){
+    public ResponseEntity<?> selectUser(@PathVariable String teamId){
         List<Room> roomList = roomService.findByTeamId(teamId);
         if(roomList.isEmpty()){
             return ResponseEntity.ok().body("데이터 없음");
@@ -48,7 +52,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/exit/{username}/{teamId}")
-    public ResponseEntity delete(@PathVariable String username, @PathVariable String teamId){
+    public ResponseEntity<?> delete(@PathVariable String username, @PathVariable String teamId){
         Room room = roomService.findByUsernameAndTeamId(username, teamId);
 
         if(room.getId() == null){
@@ -59,7 +63,7 @@ public class RoomController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity joinRoom(@RequestBody Room room){
+    public ResponseEntity<?> joinRoom(@RequestBody Room room){
         roomService.insert(room);
         return ResponseEntity.status(200).body(room);
     }
@@ -67,7 +71,7 @@ public class RoomController {
 
 
     @GetMapping("/test")
-    public ResponseEntity searchTeam(@RequestParam(value = "title", required = false) String title){
+    public ResponseEntity<?> searchTeam(@RequestParam(value = "title", required = false) String title){
 
         List<SearchTeamResponseDto> teamList;
         if(title != null){
@@ -84,7 +88,7 @@ public class RoomController {
     }
 
     @GetMapping("/test2")
-    public ResponseEntity searchSchedule(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value="detail", required = false) String detail){
+    public ResponseEntity<?> searchSchedule(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value="detail", required = false) String detail){
         List<TeamSchedule> teamScheduleList;
         if(teamId != null){
             teamScheduleList = searchService.searchByTeam_idAndDetailContains(teamId, detail);
@@ -98,19 +102,28 @@ public class RoomController {
     }
 
     // POST 변경
-    @GetMapping("/test3")
-    public ResponseEntity searchPassword(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value = "password", required = false) String password){
+    @PostMapping("/test3")
+    public ResponseEntity<?> searchPassword(@RequestParam(value = "teamId", required = false) String teamId, @RequestParam(value = "password", required = false) String password){
 
         //log.debug(teamService.findById(teamId).get().getPassword());
         //log.debug(password);
-        if(teamService.findById(teamId).get().getPassword().equals(password)){
-            return ResponseEntity.status(200).body("비밀번호 일치");
+//        if(teamService.findById(teamId).get().getPassword().equals(password)){
+//            return ResponseEntity.status(200).body("비밀번호 일치");
+//        }
+//        return ResponseEntity.status(200).body("비밀번호 불일치");
+
+
+        // 암호화된 비밀번호 복호화 확인
+        TeamResponseDto responseDto = teamService.findById(teamId).orElseThrow(()->new IllegalArgumentException(teamId));
+        if(!passwordEncoder.matches(password, responseDto.getPassword())){
+            return ResponseEntity.badRequest().body("비밀번호 불일치");
         }
-        return ResponseEntity.status(200).body("비밀번호 불일치");
+        return ResponseEntity.ok().body("비밀번호 일치");
+
     }
 
     @GetMapping("/test4")
-    public ResponseEntity searchTeamDate(@RequestParam(value = "teamId", required = false)String teamId,
+    public ResponseEntity<?> searchTeamDate(@RequestParam(value = "teamId", required = false)String teamId,
                                          @RequestParam(value = "start", required = false)String start,
                                          @RequestParam(value = "end", required = false) String end) throws ParseException {
 
@@ -131,7 +144,7 @@ public class RoomController {
     }
 
     @GetMapping("/test5")
-    public ResponseEntity searchUserDate(@RequestParam(value = "username", required = false) String username,
+    public ResponseEntity<?> searchUserDate(@RequestParam(value = "username", required = false) String username,
                                          @RequestParam(value = "start", required = false) String start,
                                          @RequestParam(value = "end", required = false) String end) throws ParseException {
 

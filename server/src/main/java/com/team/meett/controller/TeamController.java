@@ -2,11 +2,10 @@ package com.team.meett.controller;
 
 import com.team.meett.dto.TeamRequestDto;
 import com.team.meett.dto.TeamResponseDto;
-import com.team.meett.model.Team;
+import com.team.meett.service.SearchService;
 import com.team.meett.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,7 @@ import java.util.List;
 public class TeamController {
 
     protected final TeamService teamService;
+    protected final SearchService searchService;
 
     //    find by title :: 팀명으로 조회했을 경우
     @GetMapping("/team")

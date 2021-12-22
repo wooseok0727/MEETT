@@ -56,9 +56,9 @@ public class UserScheduleController {
     //    delete
     @DeleteMapping("/user/{seq}")
     public ResponseEntity<?> delete(@PathVariable Long seq) {
+
         UsService.delete(seq);
         return ResponseEntity.status(200).body("삭제 완료");
-
     }
 
 }
