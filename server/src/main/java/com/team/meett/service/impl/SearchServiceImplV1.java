@@ -32,7 +32,10 @@ public class SearchServiceImplV1 implements SearchService {
     @Override
     public List<SearchTeamResponseDto> searchByContainTeamTitle(String title) {
 
-        return teamRepository.findByTitleContains(title).stream().map(SearchTeamResponseDto::new).collect(Collectors.toList());
+        return teamRepository.findByTitleContains(title)
+                .stream()
+                .map(SearchTeamResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Override

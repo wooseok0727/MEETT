@@ -1,8 +1,6 @@
 package com.team.meett.service;
 
 import com.team.meett.dto.SearchTeamResponseDto;
-import com.team.meett.dto.TeamResponseDto;
-import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
 import com.team.meett.model.UserSchedule;
 

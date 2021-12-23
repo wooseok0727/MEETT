@@ -13,6 +13,8 @@
 //import org.springframework.web.bind.annotation.RestControllerAdvice;
 //import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 //
+//import java.text.ParseException;
+//
 //@RestControllerAdvice(basePackages = "com.team.meett.controller")
 //public class ExceptionAdvice {
 //
@@ -47,6 +49,14 @@
 //            //status 500
 //            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 //            response.setMessage("Type definition error");
+//        } else if(e instanceof IllegalArgumentException){
+//            // status 500
+//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//            response.setMessage("request param 값이 들어오지 않거나 틀렸습니다");
+//        } else if(e instanceof ParseException){
+//            // status 500
+//            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+//            response.setMessage("날짜를 parse 할 수 없습니다 값의 유무와 형식을 확인해주세요");
 //        }
 //
 //        return ResponseEntity.status(response.getStatusCode()).body(response);
