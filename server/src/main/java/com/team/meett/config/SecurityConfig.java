@@ -51,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        // password 암호화 여기서 수정하면됨
+
         // 추후 BCryptPasswordEncoder 사용하여 구현
         auth.authenticationProvider(this.daoAuthenticationProvider());
     }

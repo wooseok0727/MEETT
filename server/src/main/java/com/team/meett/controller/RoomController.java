@@ -79,7 +79,7 @@ public class RoomController {
      * 검색어와 정확히 일치하는 title이 없을 경우
      * 검색어를 포함하고 있는 결과값들이 출력됨
      *
-     * url 경로 이름 수정해야함
+     * url 경로 이름 수정해야함 (RoomController)
      */
     @GetMapping("/search/team")
     public ResponseEntity<?> searchTeam(@RequestParam(value="title", required = false) String title){
@@ -102,6 +102,8 @@ public class RoomController {
      * 팀 스케줄의 상세내용으로 검색
      * 검색할 팀의 Id 값과 검색어를 받아서 조회함
      * url 경로 수정해야함
+     *
+     * TeamScheduleController
      */
     @GetMapping("/test2")
     public ResponseEntity<?> searchSchedule(@RequestParam(value="teamId", required = false) String teamId,
@@ -150,7 +152,7 @@ public class RoomController {
     /**
      * 지정한 날짜를 통해 현재 페이지의 팀의 일정을 조회하는 method
      * 날짜 하루를 조회하려면 start 와 end를 같은 값으로 보내줘야함 ex) start = 2021-12-23, end = 2021-12-23
-     * url 경로 수정 필요
+     * url 경로 수정 필요 (TeamScheduleController)
      */
     @GetMapping("/test4")
     public ResponseEntity<?> searchTeamDate(@RequestParam(value = "teamId", required = false)String teamId,
@@ -176,7 +178,7 @@ public class RoomController {
     /**
      * 지정한 날짜를 통해 현재 페이지의 유저의 일정을 조회하는 method
      * 날짜 하루를 조회하려면 start 와 end를 같은 값으로 보내줘야함 ex) start = 2021-12-23, end = 2021-12-23
-     * url 경로 수정 필요
+     * url 경로 수정 필요 (UserScheduleController)
      */
     @GetMapping("/test5")
     public ResponseEntity<?> searchUserDate(@RequestParam(value = "username", required = false) String username,

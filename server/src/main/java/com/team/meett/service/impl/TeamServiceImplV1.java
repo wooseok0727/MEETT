@@ -60,6 +60,7 @@ public class TeamServiceImplV1 implements TeamService {
     @Override
     public void delete(String teamId) {
         if (teamRepository.existsById(teamId)) {
+
             teamRepository.deleteById(teamId);
         } else throw new EmptyResultDataAccessException(1);
     }
