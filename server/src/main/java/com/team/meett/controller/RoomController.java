@@ -3,7 +3,6 @@ package com.team.meett.controller;
 import com.team.meett.dto.SearchTeamResponseDto;
 import com.team.meett.dto.TeamResponseDto;
 import com.team.meett.model.Room;
-import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
 import com.team.meett.model.UserSchedule;
 import com.team.meett.service.RoomService;
@@ -129,14 +128,8 @@ public class RoomController {
     @PostMapping("/test3")
     public ResponseEntity<?> searchPassword(@RequestParam(value = "teamId", required = false) String teamId,
                                             @RequestParam(value = "password", required = false) String password){
-
         //log.debug(teamService.findById(teamId).get().getPassword());
         //log.debug(password);
-//        if(teamService.findById(teamId).get().getPassword().equals(password)){
-//            return ResponseEntity.status(200).body("비밀번호 일치");
-//        }
-//        return ResponseEntity.status(200).body("비밀번호 불일치");
-
 
         // 암호화된 비밀번호 복호화 확인
         TeamResponseDto responseDto = teamService.findById(teamId).orElseThrow(()->new IllegalArgumentException(teamId));

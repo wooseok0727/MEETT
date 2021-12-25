@@ -14,6 +14,5 @@ public class SearchTeamResponseDto {
         this.teamId = team.getId();
         this.title = team.getTitle();
         this.username = team.getUsername();
-
     }
 }
