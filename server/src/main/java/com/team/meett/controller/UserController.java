@@ -78,6 +78,7 @@ public class UserController {
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+            //비밀번호 매치 코드
         } catch (DisabledException e) {
             throw new Exception("사용자 비활성화", e);
         } catch (BadCredentialsException e) {

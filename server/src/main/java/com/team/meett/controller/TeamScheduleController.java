@@ -36,13 +36,14 @@ public class TeamScheduleController {
         List<TsResponseDto> tsList = teamScheduleService.findByTeamId(teamId);
 
         if(tsList.isEmpty()){
+            //잘못된 리퀘스트가 아닌 아직 정해진 스케줄이 없는 모임일 경우
             return ResponseEntity.ok().body("teamschedule이 존재하지 않습니다");
         }
         return ResponseEntity.ok(tsList);
     }
 
     // user schedule -> teamSchedule
-    @GetMapping("/team/{userSeq}/{teamId}")
+    @PostMapping("/team/{userSeq}/{teamId}")
     public ResponseEntity<?> userScheduleInsert(@PathVariable Long userSeq, @PathVariable String teamId){
         Optional<UsResponseDto> userSchedule = userScheduleService.findById(userSeq);
 
