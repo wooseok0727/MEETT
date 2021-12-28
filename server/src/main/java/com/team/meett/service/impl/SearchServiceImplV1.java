@@ -2,6 +2,8 @@ package com.team.meett.service.impl;
 
 import com.team.meett.dto.SearchTeamResponseDto;
 import com.team.meett.dto.TeamResponseDto;
+import com.team.meett.dto.TsResponseDto;
+import com.team.meett.dto.UsResponseDto;
 import com.team.meett.model.Team;
 import com.team.meett.model.TeamSchedule;
 import com.team.meett.model.UserSchedule;
@@ -74,5 +76,16 @@ public class SearchServiceImplV1 implements SearchService {
     @Override
     public List<UserSchedule> searchByUserDate(String username, Date start, Date end) {
         return userScheduleRepository.findByUsernameAndStartLessThanEqualAndEndGreaterThanEqual(username, start, end);
+    }
+
+    @Override
+    public List<UsResponseDto> searchByUserScheduleRole(String username, Integer role) {
+
+        return userScheduleRepository.findByUsernameAndRole(username, role).stream().map(UsResponseDto::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TsResponseDto> searchByTeamScheduleRole(String teamId, Integer role) {
+        return teamScheduleRepository.findByTeam_idAndRole(teamId, role).stream().map(TsResponseDto::new).collect(Collectors.toList());
     }
 }

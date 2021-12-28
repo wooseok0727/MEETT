@@ -20,4 +20,6 @@ public interface TeamScheduleRepository extends JpaRepository<TeamSchedule, Long
     public List<TeamSchedule> findByTeam_idAndTitle(String teamId, String title);
     public List<TeamSchedule> findByTeam_idAndDetailContains(String teamId, String details);
     public List<TeamSchedule> findByTeam_idAndStartLessThanEqualAndEndGreaterThanEqual(String teamId, Date start, Date end);
+
+    public List<TeamSchedule> findByTeam_idAndRole(String teamId, Integer role);
 }
