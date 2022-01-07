@@ -29,6 +29,7 @@ public class TeamScheduleController {
     protected final TeamService teamService;
     protected final TeamRepository teamRepository;
     protected final SearchService searchService;
+    protected final UserService userService;
 
 
     // team schedule 전체 조회
@@ -93,7 +94,7 @@ public class TeamScheduleController {
     /**
      * TeamSchedule 에서 Role 에 맞는 일정 조회
      */
-    @GetMapping("/test7")
+    @GetMapping("/team/search/role")
     public ResponseEntity<?> searchTeamScheduleRole(@RequestParam(value = "teamId", required = false) String teamId,
                                                     @RequestParam(value = "role", required = false)Integer role){
         if((teamId != null) && (role != null)){
@@ -159,10 +160,22 @@ public class TeamScheduleController {
         return updateTeamSchedule; //ResponseEntity.status(200).body(teamScheduleService.selectAll());
     }
 
-    @DeleteMapping("/team/{seq}")
-    public ResponseEntity<?> delete(@PathVariable Long seq){
-        teamScheduleService.delete(seq);
-        return ResponseEntity.status(200).body("삭제완료");
+    @DeleteMapping("/team/{username}/{seq}")
+    public ResponseEntity<?> delete(@PathVariable String username, @PathVariable Long seq){
+        if(((userService.findById(username).getUsername()) != null) && seq != null){
+            if(!teamScheduleService.findById(seq).isEmpty()){
+                if(teamScheduleService.findById(seq).get().getUsername().equals(username)){
+                    teamScheduleService.delete(seq);
+                    return ResponseEntity.status(200).body("삭제완료");
+                } else {
+                    return ResponseEntity.badRequest().body(username + " 해당 유저는 팀장이 아닙니다. 팀 일정은 팀장만 삭제 할 수 있습니다");
+                }
+            } else {
+                return ResponseEntity.badRequest().body(seq + " 해당 seq 값은 존재하지 않습니다");
+            }
+        } else{
+            return ResponseEntity.badRequest().body("username 또는 seq 값이 null");
+        }
     }
 
 
