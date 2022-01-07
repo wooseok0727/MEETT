@@ -66,7 +66,6 @@ public class RoomController {
         return ResponseEntity.status(200).body(room);
     }
 
-
     /**
      * 방 제목(title)로 검색하는 method
      * 검색어와 정확히 일치하는 title이 있을때는
